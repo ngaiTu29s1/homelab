@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  netdata:
+    container_name: netdata
+    image: netdata/netdata:latest
+    ports:
+      - 19999:19999
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - netdataconfig:/etc/netdata
+      - netdatalib:/var/lib/netdata
+      - netdatacache:/var/cache/netdata
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
+    restart: unless-stopped
+
+  uptime-kuma:
+    container_name: uptime-kuma
+    image: louislam/uptime-kuma:latest
+    ports:
+      - 3001:3001
+    volumes:
+      - uptime-kuma:/app/data
+    restart: unless-stopped
+
+  ookla-speedtest:
+    container_name: ookla-speedtest
+    image: alpine:latest
+    volumes:
+      - ./speedtest-data:/data
+    entrypoint: /bin/sh
+    command: >
+      -c "
+      apk add --no-cache curl bash &&
+      curl -s https://install.speedtest.net/app/cli/install.alpine.sh | bash &&
+      while true; do
+        echo 'Running Speedtest at $(date)' &&
+        speedtest --accept-license --accept-gdpr -f json > /data/result-$(date +%s).json &&
+        sleep 1800;
+      done
+      "
+    restart: unless-stopped
+
+volumes:
+  netdataconfig:
+  netdatalib:
+  netdatacache:
+  uptime-kuma:
