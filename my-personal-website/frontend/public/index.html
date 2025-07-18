@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trần Tuấn Tú - Trang Web Cá Nhân</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'%3E%3C/path%3E%3Crect x='8' y='2' width='8' height='4' rx='1' ry='1'%3E%3C/rect%3E%3C/svg%3E" type="image/svg+xml">
+</head>
+<body>
+    <header class="hero">
+        <h1>Chào mừng bạn đến với <span id="typing-text"></span></h1>
+        <p>Nơi tôi chia sẻ về hành trình công nghệ và những dự án đầy đam mê.</p>
+        <button onclick="scrollToSection('about')">Tìm hiểu thêm về tôi</button>
+    </header>
+
+    <section id="about" class="section">
+        <h2>Về Tôi</h2>
+        <p>Chào bạn! Tôi là Trần Tuấn Tú, một sinh viên ngành Kỹ thuật Điện tử Viễn thông tại Đại học Bách khoa Hà Nội (HUST). Với nền tảng vững chắc về hệ thống nhúng, C/C++, và Python, tôi đam mê khám phá công nghệ và giải quyết các vấn đề thực tế.</p>
+        <p>Tôi đã tham gia nhiều dự án thực tiễn bao gồm ứng dụng web, công cụ tự động hóa và hệ thống IoT, và gần đây là vị trí Backend Developer Intern. Tôi đặc biệt quan tâm đến Trí tuệ nhân tạo và lập trình hệ thống, luôn tìm kiếm cơ hội để học hỏi và phát triển kỹ năng kỹ thuật, giải quyết vấn đề trong môi trường đầy thách thức.</p>
+    </section>
+
+    <section id="skills" class="section">
+        <h2>Kỹ Năng & Công Nghệ</h2>
+        <div class="skills-category">
+            <h3>Ngôn ngữ lập trình</h3>
+            <div class="skills-grid">
+                <div class="skill-item">C++</div>
+                <div class="skill-item">C</div>
+                <div class="skill-item">Python</div>
+                <div class="skill-item">TypeScript</div>
+                <div class="skill-item">JavaScript</div>
+            </div>
+        </div>
+        <div class="skills-category">
+            <h3>Backend & Web</h3>
+            <div class="skills-grid">
+                <div class="skill-item">Node.js</div>
+                <div class="skill-item">Express.js</div>
+                <div class="skill-item">NestJS</div>
+                <div class="skill-item">RESTful APIs</div>
+                <div class="skill-item">Microservices</div>
+            </div>
+        </div>
+        <div class="skills-category">
+            <h3>Cơ sở dữ liệu</h3>
+            <div class="skills-grid">
+                <div class="skill-item">SQL</div>
+                <div class="skill-item">Prisma</div>
+                <div class="skill-item">MariaDB</div>
+            </div>
+        </div>
+        <div class="skills-category">
+            <h3>DevOps & Hạ tầng</h3>
+            <div class="skills-item">Docker</div>
+            <div class="skill-item">Git</div>
+            <div class="skill-item">Linux (Ubuntu)</div>
+            <div class="skill-item">Cloud Computing (concepts)</div>
+            <div class="skill-item">Distributed Systems (concepts)</div>
+        </div>
+        <div class="skills-category">
+            <h3>Hệ thống nhúng & IoT</h3>
+            <div class="skills-grid">
+                <div class="skill-item">STM32</div>
+                <div class="skill-item">STM32CubeIDE</div>
+                <div class="skill-item">Microcontrollers</div>
+                <div class="skill-item">Digital Systems</div>
+                <div class="skill-item">IoT</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <h2>Dự Án Nổi Bật</h2>
+        <div class="projects-grid">
+            <div class="project-item">
+                <h3>Self-Hosting Server trên Ubuntu</h3>
+                <p>Thiết lập máy chủ Ubuntu tự host đa năng, bao gồm chặn quảng cáo (Pi-hole), đám mây cá nhân, và streaming media. Tối ưu hóa hiệu suất và quản lý tài nguyên.</p>
+                <p class="project-tools">**Công cụ & Kỹ năng:** Ubuntu Server 22.04, Pi-hole, SSH, Linux CLI, Docker</p>
+                <a href="https://github.com/ngaiTu29s1" target="_blank" class="project-link">Xem thêm trên GitHub</a>
+            </div>
+            <div class="project-item">
+                <h3>Website Quản lý Thiên tai</h3>
+                <p>Phát triển một trang web để quản lý và giám sát dữ liệu thiên tai, hỗ trợ phản ứng và phân bổ nguồn lực hiệu quả.</p>
+                <p class="project-tools">**Công cụ & Kỹ năng:** NodeJS, MySQL, Bootstrap</p>
+                <a href="https://github.com/ngaiTu29s1" target="_blank" class="project-link">Xem thêm trên GitHub</a>
+            </div>
+            <div class="project-item">
+                <h3>Ứng dụng Tải và Phát Torrent (Desktop)</h3>
+                <p>Phát triển ứng dụng desktop để tìm kiếm, tải và phát video từ các nguồn torrent, tích hợp tìm kiếm siêu dữ liệu IMDB và API qBittorrent Web.</p>
+                <p class="project-tools">**Công cụ & Kỹ năng:** Python, PySide6, qBittorrent API, python-vlc</p>
+                <a href="https://github.com/ngaiTu29s1" target="_blank" class="project-link">Xem thêm trên GitHub</a>
+            </div>
+            <div class="project-item">
+                <h3>Trực quan hóa thuật toán DFS, BFS, Dijkstra</h3>
+                <p>Tạo công cụ tương tác để trực quan hóa các thuật toán tìm kiếm và đường đi ngắn nhất trên biểu đồ lưới.</p>
+                <p class="project-tools">**Công cụ & Kỹ năng:** C++, SFML, Visual Studio</p>
+                <a href="https://github.com/ngaiTu29s1" target="_blank" class="project-link">Xem thêm trên GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Liên Hệ</h2>
+        <p id="backend-message">Đang tải thông điệp từ backend...</p>
+        <form id="contact-form">
+            <div class="form-group">
+                <label for="name">Tên của bạn:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email của bạn:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Tin nhắn:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit">Gửi Tin Nhắn</button>
+            <p id="form-status"></p>
+        </form>
+        <div class="social-links">
+            <p>Hoặc bạn có thể liên hệ tôi qua:</p>
+            <p>Email: <a href="mailto:trantuantu2004@gmail.com">trantuantu2004@gmail.com</a></p>
+            <p>Điện thoại: <a href="tel:+84984402630">+84 984 402 630</a></p>
+            <p>GitHub: <a href="https://github.com/ngaiTu29s1" target="_blank">ngaiTu29s1</a></p>
+            <p>Email HUST: <a href="mailto:Tu.TT223819@sis.hust.edu.vn">Tu.TT223819@sis.hust.edu.vn</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Trần Tuấn Tú. Mọi quyền được bảo lưu.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
