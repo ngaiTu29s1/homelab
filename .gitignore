@@ -31,3 +31,24 @@ configs/00-installer-config.yaml
 
 # Allow example/template configs
 !configs/*.example*
+
+# Ignore personal shell configs
+configs/.gitconfig
+configs/.profile
+configs/.bashrc
+configs/.ssh/config
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Build, cache, dist
+dist/
+build/
+*.tmp
+
+# Database, backup
+*.db
+*.sqlite
+
