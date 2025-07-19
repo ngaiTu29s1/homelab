@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   netdata:
     container_name: netdata
@@ -20,6 +18,8 @@ services:
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
     restart: unless-stopped
+    networks:
+      - cv-network
 
   uptime-kuma:
     container_name: uptime-kuma
@@ -29,6 +29,8 @@ services:
     volumes:
       - uptime-kuma:/app/data
     restart: unless-stopped
+    networks:
+      - cv-network
 
   ookla-speedtest:
     container_name: ookla-speedtest
@@ -47,9 +49,26 @@ services:
       done
       "
     restart: unless-stopped
+    networks:
+      - cv-network
+
+  homer:
+    container_name: homer
+    image: b4bz/homer:latest
+    ports:
+      - 8080:8080
+    volumes:
+      - ./homer/assets:/www/assets
+    restart: unless-stopped
+    networks:
+      - cv-network
 
 volumes:
   netdataconfig:
   netdatalib:
   netdatacache:
   uptime-kuma:
+
+networks:
+  cv-network:
+    driver: bridge

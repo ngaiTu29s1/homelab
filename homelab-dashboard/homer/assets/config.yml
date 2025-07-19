@@ -1,6 +1,6 @@
 title: "Homelab Dashboard"
 subtitle: "Welcome to Tu's Homelab"
-logo: "assets/logo.png"
+logo: ""
 theme: default
 baseURL: "http://100.96.43.116" # IP Tailscale
 
@@ -25,3 +25,5 @@ services:
         subtitle: "Run manually via container"
         url: "https://www.speedtest.net"
         target: "_blank"
+
+  
