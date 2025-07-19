@@ -1,20 +1,20 @@
-# Sử dụng image Node.js chính thức phiên bản 18
+# Stage 1: Sử dụng node image chính thức
 FROM node:18-alpine
 
-# Đặt thư mục làm việc bên trong container
+# Tạo thư mục làm việc
 WORKDIR /app
 
-# Copy package.json và package-lock.json để cài đặt dependencies
+# Copy package.json và package-lock.json
 COPY package*.json ./
 
-# Cài đặt dependencies
+# Cài đặt các dependencies
 RUN npm install
 
-# Copy toàn bộ mã nguồn vào thư mục làm việc
+# Copy toàn bộ source code còn lại
 COPY . .
 
-# Mở cổng mà ứng dụng Node.js sẽ lắng nghe
+# Expose port mà ứng dụng sẽ chạy
 EXPOSE 3000
 
-# Lệnh để chạy ứng dụng khi container khởi động
-CMD ["npm", "start"]
+# Lệnh để khởi chạy ứng dụng
+CMD [ "npm", "start" ]

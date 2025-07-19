@@ -1,22 +1,28 @@
 version: '3.8'
 
 services:
-  frontend:
-    build:
-      context: ./frontend # Chỉ định thư mục chứa Dockerfile của frontend
-    ports:
-      - "81:80" # Ánh xạ cổng 80 của host tới cổng 80 của container frontend
-    depends_on:
-      - backend # Đảm bảo backend khởi động trước frontend
-    restart: always # Luôn khởi động lại nếu container dừng
-
+  # Dịch vụ Backend (API)
   backend:
     build:
-      context: ./backend # Chỉ định thư mục chứa Dockerfile của backend
-    expose:
-      - "3000" # Chỉ mở cổng 3000 bên trong mạng Docker, không ra ngoài host
-    restart: always # Luôn khởi động lại nếu container dừng
+      context: ./backend # Thư mục chứa Dockerfile của backend
+    container_name: cv_backend
+    environment:
+      - PORT=3000 # Cấu hình port bên trong container
+    networks:
+      - cv-network
 
-# Bạn có thể định nghĩa một mạng tùy chỉnh nếu muốn kiểm soát nhiều hơn,
-# nhưng với ví dụ đơn giản này, mạng mặc định của Docker Compose là đủ.
-# Docker Compose sẽ tự tạo một mạng bridge nội bộ cho các service này.
+  # Dịch vụ Frontend (Giao diện người dùng)
+  frontend:
+    build:
+      context: ./frontend # Thư mục chứa Dockerfile của frontend
+    container_name: cv_frontend
+    ports:
+      - "81:80" # Ánh xạ port 8080 của máy bạn vào port 80 của container (Nginx)
+    depends_on:
+      - backend # Frontend sẽ khởi động sau khi backend sẵn sàng
+    networks:
+      - cv-network
+
+networks:
+  cv-network:
+    driver: bridge

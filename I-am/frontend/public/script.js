@@ -1,98 +1,66 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Hiệu ứng gõ chữ (Typing Effect) ---
-    const textElement = document.getElementById('typing-text');
-    const phrases = ["Thế Giới Của Trần Tuấn Tú", "Nơi Code Gặp Đam Mê", "Kỹ Sư Điện Tử Viễn Thông"];
+
+    // --- PARTICLE.JS CONFIGURATION ---
+    particlesJS("particles-js", {
+        "particles": {
+            "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": "#ffffff" },
+            "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" } },
+            "opacity": { "value": 0.5, "random": false, "anim": { "enable": false } },
+            "size": { "value": 3, "random": true, "anim": { "enable": false } },
+            "line_linked": { "enable": true, "distance": 150, "color": "#8892b0", "opacity": 0.4, "width": 1 },
+            "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+            "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } }
+        },
+        "retina_detect": true
+    });
+
+    // --- TYPING EFFECT ---
+    const typingElement = document.querySelector('.typing-effect');
+    const words = ["an Electronics Engineer.", "a Backend Developer.", "a Lifelong Learner."];
+    let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    const typingSpeed = 150; // Tốc độ gõ
-    const deletingSpeed = 75; // Tốc độ xóa
-    const delayBeforeDelete = 1500; // Thời gian chờ trước khi xóa
 
-    function typeWriter() {
-        const currentPhrase = phrases[phraseIndex];
-        if (!isDeleting) {
-            textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+    function type() {
+        const currentWord = words[wordIndex];
+        const currentChar = isDeleting ? currentWord.substring(0, charIndex - 1) : currentWord.substring(0, charIndex + 1);
+        
+        typingElement.textContent = currentChar;
+
+        if (!isDeleting && charIndex < currentWord.length) {
             charIndex++;
-            if (charIndex === currentPhrase.length) {
-                isDeleting = true;
-                setTimeout(typeWriter, delayBeforeDelete);
-            } else {
-                setTimeout(typeWriter, typingSpeed);
-            }
-        } else {
-            textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+            setTimeout(type, 100);
+        } else if (isDeleting && charIndex > 0) {
             charIndex--;
-            if (charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                setTimeout(typeWriter, typingSpeed);
-            } else {
-                setTimeout(typeWriter, deletingSpeed);
+            setTimeout(type, 50);
+        } else {
+            isDeleting = !isDeleting;
+            if (!isDeleting) {
+                wordIndex = (wordIndex + 1) % words.length;
             }
+            setTimeout(type, 1200);
         }
     }
-    typeWriter(); // Bắt đầu hiệu ứng
+    type();
 
-    // --- Cuộn mượt mà đến các phần ---
-    window.scrollToSection = (id) => {
-        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    };
-
-    // --- Gọi API từ Backend ---
-    const backendMessageElement = document.getElementById('backend-message');
-    fetch('/api/hello') // Gọi API từ backend thông qua proxy Nginx
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+    // --- SCROLL REVEAL ANIMATION ---
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Optional: unobserve after revealing to save resources
+                // observer.unobserve(entry.target);
             }
-            return response.json();
-        })
-        .then(data => {
-            backendMessageElement.textContent = `Backend nói: ${data.message}`;
-        })
-        .catch(error => {
-            console.error('Lỗi khi gọi API backend:', error);
-            backendMessageElement.textContent = 'Không thể kết nối với Backend. Vui lòng kiểm tra console.';
-            backendMessageElement.style.color = 'red';
         });
-
-    // --- Xử lý form liên hệ ---
-    const contactForm = document.getElementById('contact-form');
-    const formStatus = document.getElementById('form-status');
-
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Ngăn chặn form submit mặc định
-
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-
-        formStatus.textContent = 'Đang gửi...';
-        formStatus.style.color = 'gray';
-
-        try {
-            const response = await fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name, email, message }),
-            });
-
-            const data = await response.json();
-
-            if (data.success) {
-                formStatus.textContent = data.message;
-                formStatus.style.color = 'green';
-                contactForm.reset(); // Xóa form sau khi gửi thành công
-            } else {
-                formStatus.textContent = data.message || 'Có lỗi xảy ra khi gửi tin nhắn.';
-                formStatus.style.color = 'red';
-            }
-        } catch (error) {
-            console.error('Lỗi khi gửi form:', error);
-            formStatus.textContent = 'Không thể gửi tin nhắn. Vui lòng thử lại sau.';
-            formStatus.style.color = 'red';
-        }
+    }, {
+        threshold: 0.1 // Trigger when 10% of the element is visible
     });
+
+    revealElements.forEach(el => observer.observe(el));
 });
