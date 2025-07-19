@@ -32,33 +32,15 @@ services:
     networks:
       - cv-network
 
-  ookla-speedtest:
-    container_name: ookla-speedtest
-    image: alpine:latest
-    volumes:
-      - ./speedtest-data:/data
-    entrypoint: /bin/sh
-    command: >
-      -c "
-      apk add --no-cache curl bash &&
-      curl -s https://install.speedtest.net/app/cli/install.alpine.sh | bash &&
-      while true; do
-        echo 'Running Speedtest at $(date)' &&
-        speedtest --accept-license --accept-gdpr -f json > /data/result-$(date +%s).json &&
-        sleep 1800;
-      done
-      "
-    restart: unless-stopped
-    networks:
-      - cv-network
-
   homer:
     container_name: homer
     image: b4bz/homer:latest
     ports:
       - 8080:8080
     volumes:
-      - ./homer/assets:/www/assets
+     - ./homer/assets:/www/assets
+    env_file:
+      - .env
     restart: unless-stopped
     networks:
       - cv-network

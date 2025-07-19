@@ -1,29 +1,21 @@
 title: "Homelab Dashboard"
 subtitle: "Welcome to Tu's Homelab"
-logo: ""
+logo: "/assets/uptime-kuma-logo.svg"
 theme: default
-baseURL: "http://100.96.43.116" # IP Tailscale
 
 services:
   - name: "Monitoring"
     icon: "fas fa-chart-line"
     items:
       - name: "Uptime Kuma"
-        logo: "https://raw.githubusercontent.com/louislam/uptime-kuma/master/public/icon.svg"
+        logo: "/assets/uptime-kuma-logo.svg"
         subtitle: "Monitor everything"
-        url: "http://100.96.43.116:3001"
+        url: "http://100.96.43.113:3001"
         target: "_blank"
 
       - name: "Netdata"
-        logo: "https://www.netdata.cloud/img/logo.svg"
+        logo: "/assets/netdata-logo.jpg"
         subtitle: "Live metrics"
-        url: "http://100.96.43.116:19999"
+        url: "http://100.96.43.113:19999"
         target: "_blank"
 
-      - name: "Ookla Speedtest"
-        logo: "https://www.speedtest.net/themes/speedtest/img/logo-speedtest.svg"
-        subtitle: "Run manually via container"
-        url: "https://www.speedtest.net"
-        target: "_blank"
-
-  
