@@ -52,3 +52,20 @@ build/
 *.db
 *.sqlite
 
+# Bookmark Manager data
+bookmark-manager/data/
+
+# Pihole etc
+pihole/etc-pihole/
+
+# Homelab dashboard assets
+homelab-dashboard/homer/assets/*.bak
+homelab-dashboard/homer/assets/*.tmp
+
+# Portainer data
+portainer/backup/
+
+# Scripts
+scripts/*.log
+scripts/*.bak
+
