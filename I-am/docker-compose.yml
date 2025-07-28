@@ -7,7 +7,9 @@ services:
       context: ./backend # Thư mục chứa Dockerfile của backend
     container_name: cv_backend
     environment:
-      - PORT=3000 # Cấu hình port bên trong container
+      - PORT=${PORT}
+    env_file:
+      - .env
     networks:
       - cv-network
 
@@ -17,7 +19,7 @@ services:
       context: ./frontend # Thư mục chứa Dockerfile của frontend
     container_name: cv_frontend
     ports:
-      - "81:80" # Ánh xạ port 8080 của máy bạn vào port 80 của container (Nginx)
+      - "81:80" # Ánh xạ port 81 của máy bạn vào port 80 của container (Nginx)
     depends_on:
       - backend # Frontend sẽ khởi động sau khi backend sẵn sàng
     networks:
