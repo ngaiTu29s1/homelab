@@ -38,9 +38,13 @@ services:
     ports:
       - 8080:8080
     volumes:
-     - ./homer/assets:/www/assets
+      - ./homer/assets:/www/assets
     env_file:
       - .env
+    environment:
+      - TITLE=${HOMER_TITLE}
+      - SUBTITLE=${HOMER_SUBTITLE}
+      - THEME=${HOMER_THEME}
     restart: unless-stopped
     networks:
       - cv-network
