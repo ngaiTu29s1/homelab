@@ -1,0 +1,335 @@
+/* --- CSS VARIABLES & BASIC SETUP --- */
+:root {
+    --bg-color: #0a192f;
+    --light-bg-color: #112240;
+    --text-color: #ccd6f6;
+    --light-text-color: #8892b0;
+    --accent-color: #64ffda;
+    --font-main: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- CUSTOM SCROLLBAR --- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--light-text-color);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+/* --- UTILITIES & SHARED STYLES --- */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 20px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+}
+
+h2 .highlight {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-right: 15px;
+    font-weight: 400;
+}
+
+/* --- SCROLL REVEAL ANIMATION --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- HEADER / NAVIGATION --- */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgba(10, 25, 47, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--accent-color);
+}
+
+/* --- PARTICLE JS BACKGROUND --- */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* --- HERO SECTION --- */
+#hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    color: var(--light-text-color);
+    margin-top: 10px;
+}
+
+.typing-effect {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.social-links {
+    margin-top: 30px;
+}
+
+.social-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    border: 1px solid var(--accent-color);
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+}
+
+/* --- ABOUT SECTION --- */
+#about p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--light-text-color);
+}
+
+/* --- EXPERIENCE & EDUCATION TIMELINE --- */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background-color: var(--light-bg-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1.5px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    right: -8.5px;
+    background-color: var(--bg-color);
+    border: 3px solid var(--accent-color);
+    top: 25px;
+    border-radius: 50%;
+    z-index: 1;
+}
+.timeline-item:nth-child(even)::after {
+    left: -6.5px;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+    background-color: var(--light-bg-color);
+    border-radius: 6px;
+    position: relative;
+}
+
+.timeline-content h3 {
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+.timeline-content .timeline-company {
+    color: var(--accent-color);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.timeline-content .timeline-date {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--light-text-color);
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.timeline-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.timeline-content ul li {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 10px;
+    color: var(--light-text-color);
+}
+
+.timeline-content ul li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* --- PROJECTS SECTION --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background-color: var(--light-bg-color);
+    padding: 25px;
+    border-radius: 6px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+}
+
+.project-card h3 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.project-card p {
+    color: var(--light-text-color);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.project-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.8rem;
+    color: var(--light-text-color);
+}
+
+.project-tools span {
+    background-color: var(--bg-color);
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+/* --- CONTACT SECTION --- */
+#contact {
+    text-align: center;
+}
+#contact p {
+    max-width: 600px;
+    margin: 20px auto 40px;
+    color: var(--light-text-color);
+}
+
+.cta-button {
+    color: var(--accent-color);
+    background-color: transparent;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    padding: 1.25rem 1.75rem;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+}
+
+/* --- FOOTER --- */
+footer {
+    padding: 20px;
+    text-align: center;
+    color: var(--light-text-color);
+    font-size: 0.8rem;
+}

@@ -1,0 +1,54 @@
+# Ignore secrets and sensitive files
+*.env
+*.key
+*.pem
+*.crt
+*.secret
+secrets/
+private/
+backup/
+*.bak
+*.swp
+*.swo
+
+# Ignore system and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# Ignore OS-specific files
+__pycache__/
+*.pyc
+
+# Ignore personal or sensitive configs
+configs/sshd_config
+configs/50-cloud-init.yaml
+configs/02-usb-tethering.yaml
+configs/fstab
+configs/00-installer-config.yaml
+
+# Allow example/template configs
+!configs/*.example*
+
+# Ignore personal shell configs
+configs/.gitconfig
+configs/.profile
+configs/.bashrc
+configs/.ssh/config
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Build, cache, dist
+dist/
+build/
+*.tmp
+
+# Database, backup
+*.db
+*.sqlite
+

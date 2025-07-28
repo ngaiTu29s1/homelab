@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trần Tuấn Tú - Personal Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Font Awesome for icons -->
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <header>
+        <nav>
+            <a href="#hero" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Trần Tuấn Tú</h1>
+                <p>I'm a <span class="typing-effect"></span></p>
+                <div class="social-links">
+                    <a href="https://github.com/ngaiTu29s1" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/tuantu102" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="container reveal">
+            <h2><span class="highlight">01.</span> Professional Summary</h2>
+            <p>
+                Electronics and Telecommunications Engineering student at HUST with a solid foundation in embedded systems, C/C++, and Python. Engaged in practical projects involving both software and hardware, including database-driven web applications and IoT systems. With a growing interest in AI and system-level programming, I am passionate about applying technology to solve real-world problems.
+            </p>
+        </section>
+
+        <!-- EXPERIENCE & EDUCATION TIMELINE -->
+        <section id="experience" class="container reveal">
+            <h2><span class="highlight">02.</span> Experience & Education</h2>
+            <div class="timeline">
+                <!-- Experience Item -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Backend Developer Intern</h3>
+                        <span class="timeline-company">[HENO TECH CORP]</span>
+                        <span class="timeline-date">7/2025 – Present</span>
+                        <ul>
+                            <li>Developing and maintaining scalable RESTful APIs using NestJS and TypeScript.</li>
+                            <li>Collaborating within an agile team, utilizing Git for version control.</li>
+                            <li>Gaining hands-on experience with database management and microservices architecture.</li>
+                            <li>Assisted in deploying services using Docker.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Education Item -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Hanoi University of Science and Technology (HUST)</h3>
+                        <span class="timeline-company">Bachelor of Engineering in Electronics and Telecommunications</span>
+                        <span class="timeline-date">Sept 2022 – Present</span>
+                        <ul>
+                            <li>GPA: 3.35/4.0 (approx. 8.38/10)</li>
+                            <li>Relevant Coursework: Microprocessors, Machine Learning, Data Structures & Algorithms, IoT.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="container reveal">
+            <h2><span class="highlight">03.</span> Noteworthy Projects</h2>
+            <div class="projects-grid">
+                <!-- Project Card 1 -->
+                <div class="project-card">
+                    <h3>Self-Hosting Server on Ubuntu</h3>
+                    <p>Established a headless Ubuntu Server for personal use, including ad-blocking, self-cloud, and media streaming. Gained hands-on experience in Linux system administration and Docker.</p>
+                    <div class="project-tools">
+                        <span>Ubuntu Server</span>
+                        <span>Docker</span>
+                        <span>Linux CLI</span>
+                        <span>SSH</span>
+                    </div>
+                </div>
+                <!-- Project Card 2 -->
+                <div class="project-card">
+                    <h3>Torrent Downloader and Player</h3>
+                    <p>Developed a desktop app to search, download, and play videos from torrent sources using Python and PySide6, integrating qBittorrent Web API.</p>
+                    <div class="project-tools">
+                        <span>Python</span>
+                        <span>PySide6</span>
+                        <span>qBittorrent API</span>
+                    </div>
+                </div>
+                <!-- Project Card 3 -->
+                <div class="project-card">
+                    <h3>Visualization of Pathfinding Algorithms</h3>
+                    <p>Created an interactive tool in C++ with SFML to demonstrate DFS, BFS, and Dijkstra algorithms on a grid, featuring real-time visualization.</p>
+                    <div class="project-tools">
+                        <span>C++</span>
+                        <span>SFML</span>
+                        <span>Visual Studio</span>
+                    </div>
+                </div>
+                 <!-- Project Card 4 -->
+                 <div class="project-card">
+                    <h3>Natural Disaster Management Website</h3>
+                    <p>Developed a website to manage and monitor natural disaster data, enabling efficient response and resource allocation.</p>
+                    <div class="project-tools">
+                        <span>NodeJS</span>
+                        <span>MySQL</span>
+                        <span>Bootstrap</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="container reveal">
+            <h2><span class="highlight">04.</span> Get In Touch</h2>
+            <p>I'm currently seeking new opportunities and my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+            <a href="mailto:trantuantu2004@gmail.com" class="cta-button">Say Hello</a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Designed & Built by Tran Tuan Tu</p>
+    </footer>
+    
+    <!-- Scripts for animations -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
