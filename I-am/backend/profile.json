@@ -52,7 +52,8 @@
     {
       "title": "Torrent Downloader and Player",
       "desc": "Developed a desktop movie manager in Python with PySide6 (MVC pattern). Integrated qbittorrent API for direct downloads, SQLite for storage, external API for metadata/posters, and embedded VLC player for playback.",
-      "tools": ["Python", "PySide6", "SQLite", "qBittorrent API", "VLC"]
+      "tools": ["Python", "PySide6", "SQLite", "qBittorrent API", "VLC"],
+      "github": "https://github.com/ngaiTu29s1/Movies_AIO"
     },
     {
       "title": "Natural Disaster Management Website",
