@@ -2,7 +2,7 @@
 FROM node:18-alpine
 
 # Tạo thư mục làm việc
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # Copy package.json và package-lock.json
 COPY package*.json ./

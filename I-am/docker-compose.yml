@@ -10,6 +10,9 @@ services:
       - PORT=${PORT}
     env_file:
       - .env
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules  # Exclude node_modules từ volume mapping
     networks:
       - cv-network
 
@@ -22,6 +25,8 @@ services:
       - "81:80" # Ánh xạ port 81 của máy bạn vào port 80 của container (Nginx)
     depends_on:
       - backend # Frontend sẽ khởi động sau khi backend sẵn sàng
+    volumes:
+      - ./frontend/public:/usr/share/nginx/html
     networks:
       - cv-network
 

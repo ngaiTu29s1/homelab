@@ -1,0 +1,71 @@
+{
+  "name": "Tran Tuan Tu",
+  "email": "trantuantu2004@gmail.com",
+  "github": "ngaiTu29s1",
+  "linkedin": "tuantu102",
+  "summary": "Final-year Electronics and Telecommunications Engineering student at Hanoi University of Science and Technology (HUST) with strong academic performance and a demonstrated focus on backend software development. Hands-on experience in building and deploying IoT systems, RESTful APIs, and automation tools using Python, TypeScript, and C++. Seeking to specialize in large-scale systems and eager to secure a Cloud Engineer, DevOps, or Backend Developer role to contribute to scalable, containerized infrastructure and modern cloud technologies.",
+  "experience": [
+    {
+      "title": "Backend Developer Intern",
+      "company": "HENO TECH CORP",
+      "date": "7/2025 – Present",
+      "details": [
+        "Developed core microservices for fintech platform finone.vn using NestJS and TypeScript, adhering to architectural patterns for scalability and security.",
+        "Implemented backend services for authentication and transaction processing.",
+        "Participated in agile workflow, conducted peer code reviews, and used Git for version control.",
+        "Designed modular database schemas for core services to ensure scalability.",
+        "Containerized backend services using Docker for consistent deployment.",
+        "Deployed multi-platform AI-powered chatbot (Web, Messenger, Zalo, Instagram) with scripted conversations and routing logic."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "Hanoi University of Science and Technology (HUST)",
+      "degree": "Bachelor of Engineering in Electronics and Telecommunications",
+      "date": "Sept 2022 – Present",
+      "details": [
+        "GPA: 3.35/4.0 (approx. 8.38/10)",
+        "Relevant Coursework: Microprocessor and Microcontroller Systems, Signal and Systems, Machine Learning Fundamentals, Digital Logic Design, Data Structures and Algorithms, Internet of Things (Samsung Innovation Campus), Digital Communication."
+      ]
+    },
+    {
+      "school": "Bac Thang Long High School",
+      "degree": "High School Diploma",
+      "date": "Aug 2019 – Jun 2022",
+      "details": []
+    }
+  ],
+  "projects": [
+    {
+      "title": "Self-Hosting Server on Linux",
+      "desc": "Deployed a personal homelab on a headless Debian server to self-host services including Pi-hole, Nextcloud, and Portainer. Managed environment via SSH, secured network/firewall, containerized apps with Docker Compose, and configured Nginx reverse proxy with SSL.",
+      "tools": ["Debian", "Docker", "Docker Compose", "Nginx", "Linux CLI", "SSH"]
+    },
+    {
+      "title": "Smart Storage IoT System – Samsung Innovation Campus",
+      "desc": "Led backend development for an 8-member team to build an IoT system with real-time sensor data processing and device actuation. Built REST APIs with Flask, MQTT broker with Mosquitto, SQLAlchemy/SQLite for storage, JWT auth, and Dockerized all backend services.",
+      "tools": ["Flask", "Mosquitto MQTT", "SQLAlchemy", "SQLite", "JWT", "Docker"]
+    },
+    {
+      "title": "Torrent Downloader and Player",
+      "desc": "Developed a desktop movie manager in Python with PySide6 (MVC pattern). Integrated qbittorrent API for direct downloads, SQLite for storage, external API for metadata/posters, and embedded VLC player for playback.",
+      "tools": ["Python", "PySide6", "SQLite", "qBittorrent API", "VLC"]
+    },
+    {
+      "title": "Natural Disaster Management Website",
+      "desc": "Built a website for monitoring and managing disaster data to enable efficient response and resource allocation.",
+      "tools": ["NodeJS", "MySQL", "Bootstrap"]
+    },
+    {
+      "title": "Visualization of DFS, BFS, and Dijkstra Algorithms",
+      "desc": "C++ desktop app using SFML to visually demonstrate graph traversal and shortest path algorithms with interactive grid UI.",
+      "tools": ["C++", "SFML", "Visual Studio"]
+    },
+    {
+      "title": "Speed Measurement Device with Arduino Uno",
+      "desc": "Arduino-based real-time speed measurement device with LCD display, timer control buttons, and Proteus simulation.",
+      "tools": ["Arduino Uno", "C++", "Proteus"]
+    }
+  ]
+}
