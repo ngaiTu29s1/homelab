@@ -40,12 +40,14 @@
     {
       "title": "Self-Hosting Server on Linux",
       "desc": "Deployed a personal homelab on a headless Debian server to self-host services including Pi-hole, Nextcloud, and Portainer. Managed environment via SSH, secured network/firewall, containerized apps with Docker Compose, and configured Nginx reverse proxy with SSL.",
-      "tools": ["Debian", "Docker", "Docker Compose", "Nginx", "Linux CLI", "SSH"]
+      "tools": ["Debian", "Docker", "Docker Compose", "Nginx", "Linux CLI", "SSH"],
+      "github": "https://github.com/ngaiTu29s1/homelab"
     },
     {
       "title": "Smart Storage IoT System – Samsung Innovation Campus",
       "desc": "Led backend development for an 8-member team to build an IoT system with real-time sensor data processing and device actuation. Built REST APIs with Flask, MQTT broker with Mosquitto, SQLAlchemy/SQLite for storage, JWT auth, and Dockerized all backend services.",
-      "tools": ["Flask", "Mosquitto MQTT", "SQLAlchemy", "SQLite", "JWT", "Docker"]
+      "tools": ["Flask", "Mosquitto MQTT", "SQLAlchemy", "SQLite", "JWT", "Docker"],
+      "github": "https://github.com/SIC-HUST-IOT02-Team-5/Website"
     },
     {
       "title": "Torrent Downloader and Player",

@@ -1,3 +1,29 @@
+// === Interactive Random Quote Box ===
+const quotes = [
+  "The best way to get started is to quit talking and begin doing. — Walt Disney",
+  "Success is not the key to happiness. Happiness is the key to success.",
+  "Don’t watch the clock; do what it does. Keep going.",
+  "Opportunities don't happen. You create them.",
+  "The only limit to our realization of tomorrow is our doubts of today.",
+  "Strive not to be a success, but rather to be of value. — Albert Einstein",
+  "If you want to lift yourself up, lift up someone else.",
+  "The future depends on what you do today. — Mahatma Gandhi",
+  "Believe you can and you're halfway there.",
+  "Your time is limited, don't waste it living someone else's life. — Steve Jobs"
+];
+
+function setRandomQuote() {
+  const quoteText = document.getElementById('quote-text');
+  if (!quoteText) return;
+  const idx = Math.floor(Math.random() * quotes.length);
+  quoteText.textContent = quotes[idx];
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  setRandomQuote();
+  const btn = document.getElementById('new-quote-btn');
+  if (btn) btn.addEventListener('click', setRandomQuote);
+});
 // ===== MODERN PORTFOLIO SCRIPT =====
 
 // Enhanced particles animation with multiple effects
@@ -312,16 +338,6 @@ function initRevealAnimation() {
   });
 }
 
-// Theme toggle (placeholder for future implementation)
-function initThemeToggle() {
-  const themeToggle = document.getElementById('theme-toggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      // Future: implement light/dark theme toggle
-      console.log('Theme toggle clicked');
-    });
-  }
-}
 
 // Render functions
 function renderProfile(data) {
@@ -334,8 +350,8 @@ function renderProfile(data) {
   }
   
   // Avatar
-  if (elements.profileImg && data.github) {
-    elements.profileImg.src = `https://avatars.githubusercontent.com/${data.github}?v=4`;
+  if (elements.profileImg) {
+    elements.profileImg.src = 'img/avatar.png';
     elements.profileImg.alt = data.name || 'Profile Picture';
   }
   
@@ -450,14 +466,24 @@ function renderTimeline(data) {
 function renderProjects(projects) {
   if (!elements.projectsGrid) return;
   
-  elements.projectsGrid.innerHTML = projects.map(project => `
+  elements.projectsGrid.innerHTML = projects.map(project => {
+    // Only show GitHub button if github or link is github
+  let githubUrl = project.github;
+  // If github is not present, do not show button (no fallback to link)
+  let liveUrl = project.link && (!project.link.includes('github.com') || (project.github && project.github !== project.link)) ? project.link : '';
+    return `
     <div class="project-card">
       <div class="project-header">
         <h3 class="project-title">${project.title}</h3>
         <div class="project-links">
-          ${project.link ? `
-            <a href="${project.link}" class="project-link" target="_blank" rel="noopener">
+          ${liveUrl ? `
+            <a href="${liveUrl}" class="project-link" target="_blank" rel="noopener" title="View Live">
               <i class="fas fa-external-link-alt"></i>
+            </a>
+          ` : ''}
+          ${githubUrl ? `
+            <a href="${githubUrl}" class="project-link" target="_blank" rel="noopener" title="View on GitHub">
+              <i class="fab fa-github"></i>
             </a>
           ` : ''}
         </div>
@@ -467,10 +493,13 @@ function renderProjects(projects) {
         ${(project.tools || []).map(tool => `<span class="tech-tag">${tool}</span>`).join('')}
       </div>
     </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 // Main initialization
+// Run theme toggle logic as soon as possible
+
 async function init() {
   try {
     // Initialize UI components
@@ -479,8 +508,6 @@ async function init() {
     initScrollSpy();
     initSmoothScroll();
     initRevealAnimation();
-    initThemeToggle();
-    
     // Fetch and render profile data
     const response = await fetch('/api/profile');
     if (response.ok) {
@@ -523,13 +550,15 @@ async function init() {
           title: "Smart Storage IoT System",
           desc: "Team backend lead for IoT system with real-time sensor processing",
           tools: ["Flask", "MQTT", "SQLAlchemy", "Docker"],
-          link: "https://github.com/SIC-HUST-IOT02-Team-5/Website"
+          link: "https://github.com/SIC-HUST-IOT02-Team-5/Website",
+          github: "https://github.com/SIC-HUST-IOT02-Team-5/Website"
         },
         {
           title: "Self-Hosting Server (Homelab)",
           desc: "Personal server deployment with Pi-hole, Nextcloud, and Portainer",
           tools: ["Debian", "Docker", "Nginx", "SSH"],
-          link: "https://github.com/ngaiTu29s1/homelab"
+          link: "https://github.com/ngaiTu29s1/homelab",
+          github: "https://github.com/ngaiTu29s1/homelab"
         }
       ]
     };

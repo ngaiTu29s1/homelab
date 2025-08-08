@@ -1,3 +1,48 @@
+/* ===== HERO BADGE ROW (MODERN HEADER BADGE) ===== */
+.hero-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+}
+.hero-badge-glow {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  box-shadow: 0 0 12px 4px var(--accent-primary), 0 0 24px 8px var(--accent-secondary);
+  animation: hero-dot-glow 1.5s ease-in-out infinite alternate;
+}
+.hero-badge-text {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--text-secondary);
+  background: rgba(26,31,46,0.7);
+  border-radius: 1rem;
+  padding: 0.3rem 1.1rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 12px rgba(100,255,218,0.06);
+  border: 1px solid var(--border-color);
+  transition: background 0.2s;
+}
+/* ===== GLOWING DOT FOR HERO HEADER ===== */
+.glow-dot {
+  display: inline-block;
+  margin-left: 16px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  box-shadow: 0 0 16px 4px var(--accent-primary), 0 0 32px 8px var(--accent-secondary);
+  vertical-align: middle;
+  animation: hero-dot-glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes hero-dot-glow {
+  0% { box-shadow: 0 0 8px 2px var(--accent-primary), 0 0 16px 4px var(--accent-secondary); opacity: 0.7; }
+  100% { box-shadow: 0 0 24px 8px var(--accent-primary), 0 0 48px 16px var(--accent-secondary); opacity: 1; }
+}
 /* ===== CSS RESET & BASE STYLES ===== */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -6,7 +51,7 @@
 }
 
 :root {
-  /* Dark Theme Colors */
+/* Dark Theme Colors (default) */
   --bg-primary: #0a0e14;
   --bg-secondary: #1a1f2e;
   --bg-tertiary: #252a3a;
@@ -22,7 +67,6 @@
   --blur-glass: blur(10px);
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  
   /* Typography */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'Fira Code', 'Monaco', 'Cascadia Code', monospace;
@@ -37,6 +81,8 @@
   --font-size-5xl: 3rem;
   --font-size-6xl: 4rem;
 }
+
+
 
 html {
   scroll-behavior: smooth;
@@ -157,30 +203,6 @@ body {
   white-space: nowrap;
 }
 
-/* ===== THEME TOGGLE ===== */
-.theme-toggle {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  width: 50px;
-  height: 50px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(26, 31, 46, 0.8);
-  backdrop-filter: var(--blur-glass);
-  color: var(--accent-primary);
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: var(--transition-smooth);
-  z-index: 1000;
-  border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-primary);
-}
-
-.theme-toggle:hover {
-  transform: scale(1.1) rotate(180deg);
-  box-shadow: var(--shadow-accent);
-}
 
 /* ===== UTILITY CLASSES ===== */
 .container {
@@ -416,8 +438,9 @@ section {
 
 .hero-image {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   position: relative;
   animation: slideInRight 1s ease forwards;
 }
@@ -425,7 +448,74 @@ section {
 .image-container {
   position: relative;
   z-index: 2;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0px; /* Less space below avatar for icons */
+  margin-top: -90px;   /* Move avatar much higher (negative margin) */
 }
+
+/* Interactive quote box below avatar */
+.quote-box {
+  margin: 0 auto 0 auto;
+  margin-bottom: 24px;
+  padding: 1.1rem 1.5rem 1.1rem 1.5rem;
+  background: rgba(26, 31, 46, 0.85);
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 24px rgba(100,255,218,0.08);
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-family: var(--font-mono);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 420px;
+  min-height: 48px;
+  transition: background 0.2s;
+}
+.quote-box button {
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 50%;
+  color: var(--bg-primary);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.quote-box button:hover {
+  background: var(--accent-secondary);
+  color: var(--accent-primary);
+}
+
+.hero-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  animation: slideInRight 1s ease forwards;
+}
+
+.image-container {
+  position: relative;
+  z-index: 2;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px; /* Add space below avatar for icons */
+  margin-top: 12px;    /* Move avatar higher */
+}
+
 
 .profile-img {
   width: 300px;
@@ -460,19 +550,25 @@ section {
   50% { transform: scale(1.05); opacity: 0.5; }
 }
 
+
+
+
+/* Arrange icons in a horizontal row below avatar */
 .floating-elements {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: static;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 18px;
   pointer-events: none;
+  margin-bottom: 8px;
 }
 
 .floating-icon {
-  position: absolute;
-  width: 60px;
-  height: 60px;
+  position: static;
+  width: 48px;
+  height: 48px;
   background: rgba(26, 31, 46, 0.9);
   backdrop-filter: var(--blur-glass);
   border-radius: 50%;
@@ -483,30 +579,12 @@ section {
   font-size: 1.5rem;
   border: 1px solid var(--border-color);
   animation: float 6s ease-in-out infinite;
+  margin: 0;
+  transition: box-shadow 0.2s;
 }
-
-.icon-1 {
-  top: 10%;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.icon-2 {
-  top: 20%;
-  right: 10%;
-  animation-delay: 1.5s;
-}
-
-.icon-3 {
-  bottom: 30%;
-  left: 5%;
-  animation-delay: 3s;
-}
-
-.icon-4 {
-  bottom: 10%;
-  right: 15%;
-  animation-delay: 4.5s;
+.floating-icon:hover {
+  box-shadow: 0 0 16px var(--accent-primary), 0 2px 8px rgba(0,0,0,0.2);
+  color: var(--accent-secondary);
 }
 
 .scroll-indicator {

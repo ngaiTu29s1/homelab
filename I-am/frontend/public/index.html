@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
 </head>
 <body>
   <div class="gradient-bg"></div>
@@ -42,10 +43,6 @@
     </div>
   </nav>
 
-  <!-- Theme Toggle -->
-  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-    <i class="fas fa-moon"></i>
-  </button>
 
   <main>
     <!-- Hero Section -->
@@ -59,15 +56,17 @@
           <h1 class="hero-name" id="name">
             <span class="first-name">Tran</span>
             <span class="last-name">Tuan Tu</span>
+            <span class="glow-dot" title="I'm online"></span>
           </h1>
           <div class="hero-role">
             <span class="role-text">I'm a&nbsp;</span>
             <span class="typing-text" id="typing-text"></span>
             <span class="cursor">|</span>
           </div>
-          <p class="hero-description" id="hero-description">
-            Building scalable backend systems and exploring cloud technologies
-          </p>
+          <div class="hero-badge-row">
+            <span class="hero-badge-glow"></span>
+            <span class="hero-badge-text">Open to new opportunities &bull; Hanoi, Vietnam</span>
+          </div>
           <div class="hero-actions">
             <a href="#contact" class="btn btn-primary">
               <i class="fas fa-envelope"></i>
@@ -79,34 +78,26 @@
             </a>
           </div>
           <div class="social-links">
-            <a href="#" class="social-link" id="github-link" target="_blank" rel="noopener">
+            <a href="https://github.com/ngaiTu29s1" class="social-link" id="github-link" target="_blank" rel="noopener">
               <i class="fab fa-github"></i>
             </a>
-            <a href="#" class="social-link" id="linkedin-link" target="_blank" rel="noopener">
+            <a href="https://linkedin.com/in/tuantu102" class="social-link" id="linkedin-link" target="_blank" rel="noopener">
               <i class="fab fa-linkedin"></i>
             </a>
-            <a href="#" class="social-link" id="email-link">
+            <a href="mailto:trantuantu2004@gmail.com" class="social-link" id="email-link">
               <i class="fas fa-envelope"></i>
             </a>
           </div>
         </div>
         <div class="hero-image">
           <div class="image-container">
-            <img src="https://avatars.githubusercontent.com/u/100000000?v=4" alt="Tran Tuan Tu" class="profile-img" id="profile-img">
+            <img src="img/avatar.png" alt="Tran Tuan Tu" class="profile-img" id="profile-img">
             <div class="image-glow"></div>
           </div>
-            <div class="floating-elements">
-            <div class="floating-icon icon-1"><i class="fab fa-python"></i></div>         <!-- Python -->
-            <div class="floating-icon icon-2"><i class="fab fa-node-js"></i></div>        <!-- Node.js -->
-            <div class="floating-icon icon-3"><i class="fab fa-docker"></i></div>         <!-- Docker -->
-            <div class="floating-icon icon-4"><i class="fas fa-cloud"></i></div>          <!-- Cloud -->
-            <div class="floating-icon icon-5"><i class="fas fa-network-wired"></i></div>  <!-- Kubernetes -->
-            <div class="floating-icon icon-6"><i class="fas fa-server"></i></div>         <!-- AWS -->
-            <div class="floating-icon icon-7"><i class="fas fa-database"></i></div>       <!-- Database -->
-            <div class="floating-icon icon-8"><i class="fab fa-linux"></i></div>          <!-- Linux -->
-            <div class="floating-icon icon-9"><i class="fab fa-git-alt"></i></div>        <!-- Git -->
-            <div class="floating-icon icon-10"><i class="fas fa-code"></i></div>          <!-- C/C++ -->
-          </div>
+            <div class="quote-box" id="quote-box">
+              <span id="quote-text">Loading quote...</span>
+              <button id="new-quote-btn" title="Show another quote"><i class="fas fa-random"></i></button>
+            </div>
         </div>
       </div>
       <div class="scroll-indicator">
