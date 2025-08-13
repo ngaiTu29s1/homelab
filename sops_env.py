@@ -13,16 +13,47 @@ def die(msg: str, code: int = 1):
     print(f"ERROR: {msg}", file=sys.stderr)
     sys.exit(code)
 
+# --- thêm vào đầu file (sau import) ---
+from os import path
+
+def find_keyfile():
+    # Ưu tiên biến môi trường nếu user đã set
+    env_key = os.environ.get("SOPS_AGE_KEY_FILE") or os.environ.get("AGE_IDENTITIES")
+    if env_key and Path(env_key).is_file():
+        return env_key
+
+    home = Path.home()
+    candidates = [
+        home / ".config" / "sops" / "age" / "keys.txt",   # Linux/macOS chuẩn SOPS
+        home / ".config" / "age"  / "keys.txt",           # vị trí phổ biến khác
+        # Windows (PowerShell dùng $HOME)
+        home / ".config" / "sops" / "age" / "keys.txt",
+        home / ".config" / "age"  / "keys.txt",
+    ]
+    for p in candidates:
+        if p.is_file():
+            return str(p)
+    return None
+
+
+# --- thay thế nguyên hàm check_tools() bằng bản mới ---
 def check_tools():
     if which("sops") is None:
         die("Missing 'sops' in PATH")
+    # age không bắt buộc nếu dùng KMS khác, nên chỉ cảnh báo
     if which("age") is None:
         print("WARN: 'age' not found in PATH (sops may still work if using other KMS)")
     if not Path(CONFIG_FILE).is_file():
         die(f"Config not found: {CONFIG_FILE}")
-    keyfile = os.environ.get("SOPS_AGE_KEY_FILE") or os.environ.get("AGE_IDENTITIES")
-    if not keyfile:
-        print("NOTE: SOPS_AGE_KEY_FILE/AGE_IDENTITIES not set; ensure sops can read your keys")
+
+    keyfile = find_keyfile()
+    if keyfile:
+        # đặt biến môi trường cho tiến trình con (sops) dùng ngay
+        os.environ["SOPS_AGE_KEY_FILE"] = keyfile
+        os.environ["AGE_IDENTITIES"] = keyfile
+    else:
+        print("NOTE: No age key found in common locations; set SOPS_AGE_KEY_FILE/AGE_IDENTITIES if needed")
+
 
 def is_in_git(path: Path) -> bool:
     # skip .git or any hidden VCS folder
