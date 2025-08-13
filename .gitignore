@@ -1,5 +1,13 @@
 # Ignore secrets and sensitive files
-*.env
+# Bỏ tất cả file .env (mọi cấp thư mục)
+**/.env
+**/*.env
+**/.env.*
+**/*.env.*
+
+# Nhưng cho phép commit bản đã mã hoá
+!**/*.enc
+
 *.key
 *.pem
 *.crt
