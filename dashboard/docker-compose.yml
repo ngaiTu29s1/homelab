@@ -1,11 +1,14 @@
+version: '3.8'
+
 services:
   netdata:
+    image: netdata/netdata:stable
     container_name: netdata
-    image: netdata/netdata:latest
-    ports:
-      - 19999:19999
+    pid: host
+    network_mode: host
     cap_add:
       - SYS_PTRACE
+      - NET_ADMIN
     security_opt:
       - apparmor:unconfined
     volumes:
@@ -17,26 +20,24 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
-    networks:
-      - cv-network
 
   uptime-kuma:
-    container_name: uptime-kuma
     image: louislam/uptime-kuma:latest
+    container_name: uptime-kuma
+    network_mode: host
     ports:
-      - 3001:3001
+      - "${KUMA_PORT}:3001"
     volumes:
       - uptime-kuma:/app/data
     restart: unless-stopped
-    networks:
-      - cv-network
 
   homer:
-    container_name: homer
     image: b4bz/homer:latest
+    container_name: homer
     ports:
-      - 8080:8080
+      - "${HOMER_PORT}:8080"
     volumes:
       - ./homer/assets:/www/assets
     env_file:
@@ -46,15 +47,9 @@ services:
       - SUBTITLE=${HOMER_SUBTITLE}
       - THEME=${HOMER_THEME}
     restart: unless-stopped
-    networks:
-      - cv-network
 
 volumes:
   netdataconfig:
   netdatalib:
   netdatacache:
   uptime-kuma:
-
-networks:
-  cv-network:
-    driver: bridge
