@@ -11,23 +11,12 @@ services:
     restart: unless-stopped
     env_file:
       - .env
-
-  caddy:
-    image: caddy:alpine
-    ports:
-      - "${CADDY_HTTP_PORT}:80"
-      - "${CADDY_HTTPS_PORT}:443"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      - portainer
-    restart: unless-stopped
-    env_file:
-      - .env
+    networks:
+      - homelab
 
 volumes:
   portainer_data:
-  caddy_data:
-  caddy_config:
+
+networks:
+  homelab:
+    external: true
