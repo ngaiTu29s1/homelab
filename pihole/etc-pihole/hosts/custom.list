@@ -17,7 +17,7 @@
 #                       WITHIN /etc/dnsmasq.d/yourname.conf                      #
 #    (make sure misc.etc_dnsmasq_d is set to true in /etc/pihole/pihole.toml)    #
 #                                                                                #
-#                      Last updated: 2025-07-20 21:02:14 +07                     #
+#                      Last updated: 2025-08-17 22:45:46 +07                     #
 #                              by FTL version v6.2.3                             #
 #                                                                                #
 ##################################################################################

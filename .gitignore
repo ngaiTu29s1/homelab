@@ -63,6 +63,11 @@ build/
 # Bookmark Manager data
 bookmark-manager/data/
 
+# Streaming service data/cache/logs/configs
+streaming/data/
+streaming/configs/
+streaming/.env
+
 # Pihole etc
 pihole/etc-pihole/
 
