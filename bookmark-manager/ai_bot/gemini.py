@@ -1,80 +1,60 @@
-# gemini.py (phiên bản gỡ lỗi đơn giản)
-import requests
-import os
+import google.generativeai as genai
 import json
-from dotenv import load_dotenv
+from utils import get_env
 
-load_dotenv("linkding_ai.env")
+GEMINI_API_KEY = get_env("GEMINI_API_KEY")
+print(f"[DEBUG] GEMINI_API_KEY exists: {bool(GEMINI_API_KEY)}")
 
-def classify_bookmark(title, url):
-    key = os.getenv("GEMINI_API_KEY")
-    if not key:
-        print("Lỗi: GEMINI_API_KEY chưa được thiết lập.")
-        return None
+try:
+    genai.configure(api_key=GEMINI_API_KEY)
+    model = genai.GenerativeModel("gemini-pro")
+    print("[DEBUG] Gemini model initialized successfully")
+except Exception as e:
+    print(f"[ERROR] Failed to initialize Gemini: {str(e)}")
+    # Return a default placeholder response if Gemini fails
+    def default_response():
+        return json.dumps({
+            "tags": ["auto", "generated"],
+            "summary": "Auto-generated summary (Gemini API failed)",
+            "group": "Uncategorized",
+            "ignore": False
+        })
 
-    # Vẫn dùng gemini-pro để đảm bảo tương thích
-    model = "gemini-1.5-flash-latest"
+def enrich_bookmark(title: str, desc: str, url: str):
+    print(f"[DEBUG] Processing bookmark: {title}")
     
-    prompt = f"""
-Phân tích và phân loại bookmark sau, đặt description ngắn gọn và các tags liên quan đến nội dung, chủ đề, lĩnh vực, hoặc mục đích sử dụng của trang web. Không dùng các tag chung chung như 'tag1', 'tag2', 'tag3'.
-Title: {title}
-URL: {url}
-
-Trả về đúng định dạng JSON sau, không có markdown formatting:
-{{
-  "description": "...",
-  "tags": "tag1, tag2, tag3"
-}}
-"""
-
-    payload = {
-        "contents": [{"parts": [{"text": prompt}]}],
-        "safetySettings": [
-            {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
-            {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
-            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
-            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"}
-        ],
-        "generationConfig": {
-            "responseMimeType": "application/json",
-        }
-    }
-
-    print(f"\n--- [REQUEST] Đang xử lý URL: {url} ---")
-
     try:
-        res = requests.post(
-            f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
-            params={"key": key},
-            json=payload,
-            timeout=30
-        )
-    except requests.exceptions.RequestException as e:
-        print(f"[ERROR] Lỗi kết nối đến Gemini API: {e}")
-        return None
+        prompt = f"""
+        You're an intelligent bookmark assistant.
+        Given the following info:
+        - Title: {title}
+        - Description: {desc}
+        - URL: {url}
 
-    # --- IN RA RAW RESPONSE NGAY LẬP TỨC ---
-    print(f"[RESPONSE] Status Code: {res.status_code}")
-    print("[RESPONSE] Raw Text Body:")
-    print(res.text)
-    # ----------------------------------------
-
-    try:
-        response_json = res.json()
+        Please return a JSON with:
+        1. tags: Up to 3 relevant tags
+        2. summary: short summary under 30 words
+        3. group: Suggested topic group (e.g. Dev, Design, News)
+        4. ignore: true if spam
+        """
         
-        # Kiểm tra cấu trúc response thành công
-        if "candidates" in response_json:
-            text_part = response_json["candidates"][0]["content"]["parts"][0]["text"]
-            print("[SUCCESS] Trích xuất nội dung thành công.")
-            return json.loads(text_part)
+        # Handle empty title case
+        if not title and not url:
+            print("[DEBUG] Empty bookmark, skipping")
+            return json.dumps({"ignore": True})
+            
+        response = model.generate_content(prompt)
+        print("[DEBUG] Gemini API responded successfully")
+        return response.text
+    except Exception as e:
+        print(f"[ERROR] Gemini API error: {str(e)}")
+        # Return default response on error
+        if 'default_response' in globals():
+            return default_response()
         else:
-            # Nếu không có "candidates", đây là response lỗi/bị chặn
-            print("[ERROR] Response từ Gemini không chứa 'candidates'.")
-            return None
-
-    except json.JSONDecodeError:
-        print("[ERROR] Không thể parse JSON từ response của Gemini.")
-        return None
-    except (KeyError, IndexError):
-        print("[ERROR] Cấu trúc JSON nhận được không như mong đợi.")
-        return None
+            return json.dumps({
+                "tags": ["auto", "generated"],
+                "summary": "Auto-generated summary (API error)",
+                "group": "Uncategorized",
+                "ignore": False
+            })

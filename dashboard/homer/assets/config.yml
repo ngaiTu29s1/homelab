@@ -132,3 +132,8 @@ services:
         url: "http://debian:9000"
         target: "_blank"
 
+      - name: "Linkding"
+        logo: "/assets/linkding-logo.svg"
+        subtitle: "Bookmark manager"
+        url: "http://debian:9090"
+        target: "_blank"

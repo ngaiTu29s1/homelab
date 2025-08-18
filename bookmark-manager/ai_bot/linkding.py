@@ -1,49 +1,23 @@
-# linkding.py (Phiên bản đã sửa)
-import os
-import requests
 
-BASE_URL = "http://linkding:9090"
-API_TOKEN = os.getenv("LINKDING_API_TOKEN")
+import httpx
+from utils import get_env
 
-if not API_TOKEN:
-    raise RuntimeError("LINKDING_API_TOKEN is not set. Check your environment or .env file.")
+# Lấy biến môi trường và in ra để debug
+LD_HOST = get_env("LINKDING_HOST", "http://linkding:9090")
+LD_TOKEN = get_env("LINKDING_TOKEN")
+print(f"[DEBUG] LINKDING_HOST = {LD_HOST}")
+print(f"[DEBUG] LINKDING_TOKEN = {LD_TOKEN[:6] + '...' if LD_TOKEN else None}")
 
-HEADERS = {
-    "Authorization": f"Token {API_TOKEN}",
-    "Content-Type": "application/json"
-}
+if not LD_HOST or not LD_TOKEN:
+    raise RuntimeError("Thiếu biến môi trường LINKDING_HOST hoặc LINKDING_TOKEN. Kiểm tra lại file .env và docker-compose.yml!")
 
-# ... hàm get_bookmarks giữ nguyên ...
+HEADERS = {"Authorization": f"Token {LD_TOKEN}"}
 
-def get_bookmarks():
-    # ... giữ nguyên code của bạn ...
-    import time
-    for i in range(10):
-        try:
-            res = requests.get(f"{BASE_URL}/api/bookmarks/?limit=1000", headers=HEADERS) # Thêm limit để lấy nhiều hơn
-            res.raise_for_status()
-            data = res.json()
-            bookmarks = data.get("results", [])
-            # Lấy các bookmark chưa có description HOẶC chưa có tags
-            return [bm for bm in bookmarks if not bm.get("description") or not bm.get("tag_names")]
-        except requests.exceptions.ConnectionError as e:
-            print(f"[Retry {i+1}/10] Linkding not ready, waiting...")
-            time.sleep(3)
-        except Exception as e:
-            print("Error getting bookmarks:", e)
-            break
-    return []
+async def get_bookmarks():
+    async with httpx.AsyncClient() as client:
+        r = await client.get(f"{LD_HOST}/api/bookmarks/", headers=HEADERS)
+        return r.json().get("results", [])
 
-
-def update_bookmark(bookmark_id, data):
-    # API của Linkding dùng `tag_names` (một list of strings) để cập nhật tags
-    # và `description` để cập nhật mô tả.
-    # payload sẽ chứa bất cứ key nào được truyền vào trong `data`.
-    res = requests.patch(f"{BASE_URL}/api/bookmarks/{bookmark_id}/", json=data, headers=HEADERS)
-    
-    # In ra lỗi nếu có để dễ debug
-    if res.status_code >= 400:
-        print(f"Lỗi từ Linkding API ({res.status_code}): {res.text}")
-        
-    res.raise_for_status()
-    return res.status_code
+async def update_bookmark(bookmark_id, patch_data):
+    async with httpx.AsyncClient() as client:
+        await client.patch(f"{LD_HOST}/api/bookmarks/{bookmark_id}/", headers=HEADERS, json=patch_data)

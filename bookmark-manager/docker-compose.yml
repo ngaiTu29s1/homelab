@@ -4,21 +4,38 @@ services:
   linkding:
     image: sissbruecker/linkding:latest
     container_name: linkding
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9090"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     ports:
       - "9090:9090"
     volumes:
-      - ./data:/etc/linkding/data
+      - ./linkding_data:/etc/linkding/data
     env_file:
       - .env
     restart: unless-stopped
+    networks:
+      - mynetwork
 
   linkding_ai:
     build:
       context: ./ai_bot
       dockerfile: Dockerfile
-    container_name: linkding_ai
-    env_file:
-      - linkding_ai.env
+    container_name: linkding-ai
     volumes:
-      - ./data:/data
+      - ./linkding_ai_data:/data
+      - ./.env:/.env
+    env_file:
+      - .env
+    depends_on:
+      linkding:
+        condition: service_healthy
     restart: unless-stopped
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge

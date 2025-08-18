@@ -1,46 +1,74 @@
-# main.py (Phiên bản đã sửa)
-from linkding import get_bookmarks, update_bookmark
-from gemini import classify_bookmark
+import asyncio
+import json
 import time
+from linkding import get_bookmarks, update_bookmark
+from gemini import enrich_bookmark
 
-def run():
-    bookmarks = get_bookmarks()
-    if not bookmarks:
-        print("Không tìm thấy bookmarks nào cần cập nhật hoặc có lỗi khi lấy bookmarks.")
-        return
-
-    print(f"Tìm thấy {len(bookmarks)} bookmarks cần cập nhật description hoặc tags.")
+async def process():
+    print("[INFO] Starting bookmark processing")
     
-    for bm in bookmarks:
-        print(f"\n>>> Đang xử lý bookmark ID: {bm['id']}, Title: {bm['title']}")
-        info = classify_bookmark(bm["title"], bm["url"])
+    # Add a small delay to ensure linkding is fully ready
+    print("[INFO] Waiting 5 seconds for linkding service to be fully ready...")
+    time.sleep(5)
+    
+    try:
+        print("[INFO] Fetching bookmarks from linkding")
+        bookmarks = await get_bookmarks()
+        print(f"[INFO] Retrieved {len(bookmarks)} bookmarks")
         
-        if info and "description" in info and "tags" in info:
-            # --- BƯỚC SỬA LỖI QUAN TRỌNG ---
-            # Chuyển đổi chuỗi tags thành danh sách các tag
-            # Ví dụ: "tag1, tag2,  tag3" -> ["tag1", "tag2", "tag3"]
-            tag_string = info.get("tags", "")
-            tag_list = [tag.strip() for tag in tag_string.split(',') if tag.strip()]
-
-            update_data = {
-                "description": info["description"],
-                "tag_names": tag_list # Linkding API sử dụng 'tag_names' để cập nhật
-            }
+        if not bookmarks:
+            print("[INFO] No bookmarks to process")
+            print("[INFO] Process completed successfully")
+            return
             
-            print(f"Chuẩn bị cập nhật bookmark ID {bm['id']} với dữ liệu:")
-            print(f"  - Description: {update_data['description']}")
-            print(f"  - Tags: {update_data['tag_names']}")
-
+        for bm in bookmarks:
             try:
-                status_code = update_bookmark(bm["id"], update_data)
-                print(f"Cập nhật thành công! (Status: {status_code})")
+                title = bm["title"]
+                desc = bm.get("description", "")
+                url = bm["url"]
+                print(f"[INFO] Processing: {title}")
+                
+                result = enrich_bookmark(title, desc, url)
+
+                try:
+                    data = json.loads(result)
+                except json.JSONDecodeError:
+                    print(f"[SKIP] Could not parse result for {title}\n{result}")
+                    continue
+
+                if data.get("ignore"):
+                    print(f"[SKIP] Ignored: {title}")
+                    continue
+
+                patch = {
+                    "description": f"{data.get('summary', '')}\n\nAI Group: {data.get('group', '')}",
+                    "tag_names": ", ".join(data.get("tags", []))
+                }
+                await update_bookmark(bm["id"], patch)
+                print(f"[DONE] Updated: {title}")
             except Exception as e:
-                print(f"!!! Lỗi khi cập nhật bookmark ID {bm['id']}: {e}")
-            
-            # Giữ khoảng nghỉ để tránh bị giới hạn tốc độ
-            time.sleep(2) # Tăng lên 2 giây để an toàn hơn
-        else:
-            print(f"Không nhận được thông tin hợp lệ từ Gemini cho bookmark ID {bm['id']}.")
+                print(f"[ERROR] Error processing bookmark: {str(e)}")
+                continue
+        
+        print("[INFO] Process completed successfully")
+    except Exception as e:
+        print(f"[ERROR] Fatal error in main process: {str(e)}")
 
 if __name__ == "__main__":
-    run()
+    try:
+        # Run immediately once
+        asyncio.run(process())
+        
+        # Then run periodically every hour
+        print("[INFO] Processing complete. Will run again in 1 hour...")
+        
+        while True:
+            # Sleep for 1 hour
+            time.sleep(3600)
+            print("[INFO] Scheduled run starting...")
+            asyncio.run(process())
+            print("[INFO] Scheduled run complete. Will run again in 1 hour...")
+    except KeyboardInterrupt:
+        print("[INFO] Process interrupted by user")
+    except Exception as e:
+        print(f"[FATAL] Unhandled exception: {str(e)}")

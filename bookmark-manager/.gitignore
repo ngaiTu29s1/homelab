@@ -1,9 +1,11 @@
 # Ignore database, environment, and assets
 /data/
-linkding_ai.env
 *.sqlite3*
 *.db*
 *.env
 assets/
 __pycache__/
 *.pyc
+
+linkding_ai_data/
+linkding_data/

@@ -8,8 +8,9 @@ declare -A services=(
   ["portainer"]="portainer"
   ["netdata"]="netdata"
   ["pihole"]="pihole"
-  ["uptime-kuma"]="uptimekuma"  # không có thật, sẽ fail (nô tài để đây để test case fail)
-  ["homer"]="homeassistant"     # thay thế gần đúng (vì Homer không có icon chính thức)
+  ["uptime-kuma"]="uptimekuma"  
+  ["homer"]="homeassistant"  
+  ["linkding"]="pinboard"   
 )
 
 echo "📥 Fetching logos into $(pwd)..."
