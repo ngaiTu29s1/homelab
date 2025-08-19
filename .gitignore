@@ -70,6 +70,8 @@ streaming/.env
 
 # Pihole etc
 pihole/etc-pihole/
+pihole/etc-pihole/logrotate
+
 
 # Homelab dashboard assets
 homelab-dashboard/homer/assets/*.bak
