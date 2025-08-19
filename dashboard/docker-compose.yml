@@ -4,8 +4,6 @@ services:
   netdata:
     image: netdata/netdata:stable
     container_name: netdata
-    pid: host
-    network_mode: host
     cap_add:
       - SYS_PTRACE
       - NET_ADMIN
@@ -22,16 +20,21 @@ services:
       - /etc/os-release:/host/etc/os-release:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
+    ports:
+      - "19999:19999"
+    networks:
+      - homelab
 
   uptime-kuma:
     image: louislam/uptime-kuma:latest
     container_name: uptime-kuma
-    network_mode: host
     ports:
       - "${KUMA_PORT}:3001"
     volumes:
       - uptime-kuma:/app/data
     restart: unless-stopped
+    networks:
+      - homelab
 
   homer:
     image: b4bz/homer:latest
@@ -47,9 +50,15 @@ services:
       - SUBTITLE=${HOMER_SUBTITLE}
       - THEME=${HOMER_THEME}
     restart: unless-stopped
+    networks:
+      - homelab
 
 volumes:
   netdataconfig:
   netdatalib:
   netdatacache:
   uptime-kuma:
+
+networks:
+  homelab:
+    external: true
