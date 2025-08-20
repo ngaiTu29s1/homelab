@@ -1,0 +1,122 @@
+/* === COSMIC GLASS THEME ===
+   Space vibes + Glassmorphism
+   Dark: cosmic gradient + stars
+   Light: pastel nebula
+*/
+/* DEBUG: Force Light & show YAML colors clearly */
+/* html, body {
+  background: linear-gradient(135deg, #fff7fb 0%, #f8fbff 65%, #fff8ff 100%) !important;
+}
+.card, header.header, .navbar, footer.footer {
+  background: rgba(255,255,255,.72) !important;
+  backdrop-filter: blur(14px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(140%) !important;
+  border: 1px solid var(--highlight-secondary, #ff80d0) !important;
+}
+.card .title, a:hover {
+  color: var(--highlight-primary, #ff4fbf) !important;
+  text-shadow: 0 0 8px rgba(255, 79, 191, .35);
+} */
+
+
+/* Core vars */
+:root {
+  --cn-accent: var(--highlight-primary, #5ad7ff);
+  --cn-accent-2: var(--highlight-secondary, #a78bfa);
+  --cn-radius: 16px;
+  --cn-trans: 200ms ease;
+}
+
+/* DARK MODE */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg, #0c0f17 0%, #111827 50%, #0f172a 100%);
+    background-attachment: fixed;
+    position: relative;
+    color: #e2e8f0;
+  }
+  /* starfield overlay */
+  body::before {
+    content:"";
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.5) 50%, transparent 51%),
+      radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,.35) 50%, transparent 51%),
+      radial-gradient(1px 1px at 40% 60%, rgba(255,255,255,.4) 50%, transparent 51%),
+      radial-gradient(1px 1px at 85% 25%, rgba(255,255,255,.45) 50%, transparent 51%);
+    animation: twinkle 4s infinite alternate;
+  }
+  @keyframes twinkle { from {opacity:.3} to {opacity:.7} }
+
+  header.header, .navbar, footer.footer {
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    background: rgba(17, 24, 39, 0.55) !important;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+  }
+
+  .card {
+    background: rgba(255,255,255,.08) !important;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: var(--cn-radius);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    box-shadow: 0 8px 24px rgba(0,0,0,.45);
+    transition: transform var(--cn-trans), box-shadow var(--cn-trans), border-color var(--cn-trans);
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover {
+    transform: translateY(-4px) scale(1.01);
+    border-color: var(--cn-accent);
+    box-shadow: 0 12px 32px rgba(0,0,0,.6);
+  }
+}
+
+/* LIGHT MODE */
+@media (prefers-color-scheme: light) {
+  body {
+    background: linear-gradient(135deg, #fdfcff 0%, #f0f9ff 50%, #f8f5ff 100%);
+    background-attachment: fixed;
+    color: #1e293b;
+  }
+  header.header, .navbar, footer.footer {
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    background: rgba(255, 255, 255, 0.65) !important;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+  }
+
+  .card {
+    background: rgba(255,255,255,.65) !important;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: var(--cn-radius);
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    box-shadow: 0 8px 20px rgba(0,0,0,.1);
+    transition: transform var(--cn-trans), box-shadow var(--cn-trans), border-color var(--cn-trans);
+  }
+  .card:hover {
+    transform: translateY(-3px) scale(1.01);
+    border-color: var(--cn-accent);
+    box-shadow: 0 12px 28px rgba(0,0,0,.18);
+  }
+}
+
+/* Typography & links */
+.title, .card .title { text-shadow: 0 0 6px rgba(90,215,255,.25); }
+a, .link {
+  transition: color var(--cn-trans), text-shadow var(--cn-trans);
+}
+a:hover, .link:hover {
+  color: var(--cn-accent) !important;
+  text-shadow: 0 0 8px rgba(90,215,255,.45);
+}
+
+/* Section underline */
+.section .title::after {
+  content:"";
+  display:block; height:2px; width:60px; margin-top:6px;
+  background: linear-gradient(90deg, var(--cn-accent), var(--cn-accent-2));
+  filter: drop-shadow(0 0 6px rgba(90,215,255,.35));
+}

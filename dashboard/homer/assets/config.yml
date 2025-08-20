@@ -1,4 +1,4 @@
-title: "App dashboard of Tu's Homelab"
+title: "Tu's Homelab "
 subtitle: "This is a ✍️(◔◡◔)"
 # documentTitle: "Welcome" # Customize the browser tab text
 logo: "/assets/homer-logo.svg"
@@ -11,7 +11,7 @@ hotkey:
   search: "Shift"
 
 
-footer: '<p>👑 Crafted with <span class="has-text-danger">❤️</span> by <strong>Tran Tuan Tu</  strong> —Running on a humble homelab powered by Debian, Docker & caffeine ☕ ·
+footer: '<p>👑 Crafted with <span class="has-text-danger">❤️</span> by <strong>Tran Tuan Tu</strong> —Running on a humble homelab powered by Debian, Docker & caffeine ☕ ·
   <a href="https://github.com/ngaiTu29s1" target="_blank"><i class="fab fa-github"></i> GitHub</a></p>' # set false if you want to hide it.
 
 columns: "3" # "auto" or number (must be a factor of 12: 1, 2, 3, 4, 6, 12)
@@ -26,52 +26,51 @@ proxy:
     Test1: "Example1"
 
 
-# Set the default layout and color scheme
-defaults:
-  layout: list # Either 'columns', or 'list'
-  colorTheme: light # One of 'auto', 'light', or 'dark'
-
 # Optional theming
 theme: default # 'default' or one of the themes available in 'src/assets/themes'.
 
+# Set the default layout and color scheme
+defaults:
+  layout: list # Either 'columns', or 'list'
+  colorTheme: auto # One of 'auto', 'light', or 'dark'
+
+
 # Optional custom stylesheet
 # Will load custom CSS files. Especially useful for custom icon sets.
-# stylesheet:
-#   - "assets/custom.css"
+stylesheet:
+  - "assets/themes/cyber-neon.css" # This is the default neon theme, you can remove it if you don't want to use it.
 
 # Here is the exhaustive list of customization parameters
 # However all value are optional and will fallback to default if not set.
 # if you want to change only some of the colors, feel free to remove all unused key.
 colors:
-  light:
-    highlight-primary: "#1f77b4"          # xanh dev hiện đại
-    highlight-secondary: "#5fa8d3"
-    highlight-hover: "#82c4f8"
-    background: "#fdfdfd"
-    card-background: "#ffffff"
-    text: "#2e2e2e"
-    text-header: "#1f1f1f"
-    text-title: "#111111"
-    text-subtitle: "#3a3a3a"
-    card-shadow: "rgba(0, 0, 0, 0.08)"
-    link: "#1f77b4"
-    link-hover: "#0d47a1"
-    background-image: "/assets/bg/light-wave.svg"  # optional, có thể bỏ
+  light:   # Latte - Đảm bảo độ tương phản tốt và màu sắc dễ chịu
+    highlight-primary: "#1e66f5"    # Blue
+    highlight-secondary: "#8839ef"  # Purple
+    highlight-hover: "#179299"      # Teal
+    background: "#eff1f5"           # Nền sáng
+    card-background: "#ffffff"      # Card trắng
+    text: "#4c4f69"                  # Chữ đen xám (dễ đọc trên nền sáng)
+    text-header: "#1e1e2e"           # Chữ tiêu đề đậm
+    text-title: "#11111b"            # Chữ tiêu đề chính rất đậm
+    text-subtitle: "#6c6f85"         # Chữ phụ đề
+    card-shadow: "rgba(0, 0, 0, 0.08)" # Bóng đổ nhẹ
+    link: "#1e66f5"                  # Link blue
+    link-hover: "#8839ef"            # Link hover purple
 
-  dark:
-    highlight-primary: "#00acc1"          # teal xanh nhẹ
-    highlight-secondary: "#26c6da"
-    highlight-hover: "#4dd0e1"
-    background: "#121212"
-    card-background: "#1e1e1e"
-    text: "#e0e0e0"
-    text-header: "#ffffff"
-    text-title: "#fafafa"
-    text-subtitle: "#c0c0c0"
-    card-shadow: "rgba(0, 0, 0, 0.6)"
-    link: "#4dd0e1"
-    link-hover: "#ffcc80"
-    background-image: "/assets/bg/dark-wave.svg"  # optional, có thể bỏ
+  dark:    # Mocha - Các chỉnh sửa để dịu mắt hơn, có chiều sâu
+    highlight-primary: "#89b4fa"   # Blue pastel (vẫn giữ)
+    highlight-secondary: "#cba6f7" # Purple pastel (vẫn giữ)
+    highlight-hover: "#94e2d5"     # Teal pastel (vẫn giữ)
+    background: "#0d0d1a"          # Nền tối rất sâu (tối hơn một chút)
+    card-background: "#1e1e2e"     # Nền card tối hơn nền background một chút (tạo layer)
+    text: "#cdd6f4"                # Chữ sáng nhạt (tương phản tốt với nền tối)
+    text-header: "#CCD0DA"         # Chữ tiêu đề đầu sáng, dịu (xám trắng hơi xanh)
+    text-title: "#DFE3EB"          # Chữ tiêu đề chính sáng, rõ (trắng sữa)
+    text-subtitle: "#A6ADC8"       # Chữ phụ đề xám xanh (hơi sáng hơn để rõ hơn)
+    card-shadow: "rgba(0, 0, 0, 0.7)" # Bóng đổ sâu
+    link: "#89b4fa"                # Link blue pastel
+    link-hover: "#cba6f7"          # Link hover purple pastel
 
 
 # Optional message
@@ -131,6 +130,7 @@ services:
         subtitle: "Container management"
         url: "http://debian:9000"
         target: "_blank"
+        stats: [cpu, mem]
 
       - name: "Linkding"
         logo: "/assets/linkding-logo.svg"
