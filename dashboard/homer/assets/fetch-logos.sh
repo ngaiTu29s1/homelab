@@ -7,10 +7,10 @@ cd "$(dirname "$0")" || exit 1
 declare -A services=(
   ["portainer"]="portainer"
   ["netdata"]="netdata"
-  ["pihole"]="pihole"
   ["uptime-kuma"]="uptimekuma"  
   ["homer"]="homeassistant"  
-  ["linkding"]="pinboard"   
+  ["linkding"]="pinboard"
+  ["adguard"]="adguard"
 )
 
 echo "📥 Fetching logos into $(pwd)..."

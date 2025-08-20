@@ -137,3 +137,9 @@ services:
         subtitle: "Bookmark manager"
         url: "http://debian:9090"
         target: "_blank"
+      
+      - name: "AdGuard Home"
+        logo: "/assets/adguard-logo.svg"
+        subtitle: "DNS filtering"
+        url: "http://debian:3000"
+        target: "_blank"
