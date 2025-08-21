@@ -13,4 +13,25 @@
 
 ## 🌐 Services
 
-Updating...
+
+### 📁 Project Structure & Services
+
+| Path | Service | Description |
+|------|---------|-------------|
+| [`bookmark-manager/`](./bookmark-manager) | 🔖 Bookmark Manager | AI-powered bookmarks (linkding + linkding-ai, Gemini integration) |
+| [`homelab-dashboard/`](./homelab-dashboard) | 🏠 Dashboard | Central dashboard ([Homer](https://github.com/bastienwirtz/homer)) |
+| [`I-am/`](./I-am) | 👤 Portfolio | Personal CV/portfolio ([Node.js](https://nodejs.org/), [Nginx](https://nginx.org/)) |
+| [`pihole/`](./pihole) | 🚫 Pi-hole | Network-wide ad-blocking & DNS ([Pi-hole](https://pi-hole.net/)) |
+| [`portainer/`](./portainer) | 🐳 Portainer | Docker management UI ([Portainer](https://www.portainer.io/)) |
+| [`scripts/`](./scripts) | ⚙️ Scripts | Utility & automation scripts (e.g., wifi_autofix.sh) |
+
+---
+
+#### 🔑 Key Services
+
+- 🔖 [`bookmark-manager`](./bookmark-manager): AI bookmark management, auto-tagging, Gemini integration
+- 🏠 [`homelab-dashboard`](./homelab-dashboard): Homer dashboard for quick access to all services
+- 👤 [`I-am`](./I-am): Personal CV/portfolio site (Node.js backend, static frontend, Nginx)
+- 🚫 [`pihole`](./pihole): DNS/ad-blocking for your network
+- 🐳 [`portainer`](./portainer): Web UI for Docker
+- ⚙️ [`scripts`](./scripts): Automation and maintenance scripts
