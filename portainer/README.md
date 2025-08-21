@@ -1,4 +1,4 @@
-# � Portainer
+#  Portainer
 
 Portainer provides a simple and powerful web UI to manage your Docker containers, images, networks, and volumes.
 
