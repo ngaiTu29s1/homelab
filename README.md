@@ -11,27 +11,26 @@
 - **GPU:** Intel HD Graphics 530
 - **Storage:** 256GB SSD + 500GB HDD
 
-## 🌐 Services
-
-
 ### 📁 Project Structure & Services
 
 | Path | Service | Description |
 |------|---------|-------------|
+| [`adguardhome/`](./adguardhome) | 🛡️ AdGuard Home | Network-wide ad-blocking & DNS ([AdGuard Home](https://adguard.com/en/adguard-home/overview.html)) |
 | [`bookmark-manager/`](./bookmark-manager) | 🔖 Bookmark Manager | AI-powered bookmarks (linkding + linkding-ai, Gemini integration) |
-| [`homelab-dashboard/`](./homelab-dashboard) | 🏠 Dashboard | Central dashboard ([Homer](https://github.com/bastienwirtz/homer)) |
-| [`I-am/`](./I-am) | 👤 Portfolio | Personal CV/portfolio ([Node.js](https://nodejs.org/), [Nginx](https://nginx.org/)) |
-| [`pihole/`](./pihole) | 🚫 Pi-hole | Network-wide ad-blocking & DNS ([Pi-hole](https://pi-hole.net/)) |
+| [`configs/`](./configs) | ⚙️ Configs | System and service configuration files (cloud-init, fstab, etc.) |
+| [`dashboard/`](./dashboard) | 🏠 Dashboard | Central dashboard ([Homer](https://github.com/bastienwirtz/homer)) |
 | [`portainer/`](./portainer) | 🐳 Portainer | Docker management UI ([Portainer](https://www.portainer.io/)) |
-| [`scripts/`](./scripts) | ⚙️ Scripts | Utility & automation scripts (e.g., wifi_autofix.sh) |
+| [`sops-env.py`](./sops-env.py) | 🔐 SOPS Env | Script for managing encrypted environment files |
+| [`streaming/`](./streaming) | 📺 Streaming | Media and streaming services (e.g., Jellyfin, Sonarr, Radarr, etc.) |
 
 ---
 
 #### 🔑 Key Services
 
+- 🛡️ [`adguardhome`](./adguardhome): AdGuard Home for DNS/ad-blocking
 - 🔖 [`bookmark-manager`](./bookmark-manager): AI bookmark management, auto-tagging, Gemini integration
-- 🏠 [`homelab-dashboard`](./homelab-dashboard): Homer dashboard for quick access to all services
-- 👤 [`I-am`](./I-am): Personal CV/portfolio site (Node.js backend, static frontend, Nginx)
-- 🚫 [`pihole`](./pihole): DNS/ad-blocking for your network
+- 🏠 [`dashboard`](./dashboard): Homer dashboard for quick access to all services
 - 🐳 [`portainer`](./portainer): Web UI for Docker
-- ⚙️ [`scripts`](./scripts): Automation and maintenance scripts
+- 📺 [`streaming`](./streaming): Media/streaming stack (Jellyfin, Sonarr, Radarr, etc.)
+- ⚙️ [`configs`](./configs): System/service config files
+- 🔐 [`sops-env.py`](./sops-env.py): Encrypted env management script
