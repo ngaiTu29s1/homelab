@@ -1,8 +1,6 @@
-version: "3"
-
 services:
   portainer:
-    image: portainer/portainer-ce
+    image: portainer/portainer-ce:2.33.0-alpine
     ports:
       - "${PORTAINER_PORT}:9000"
     volumes:
