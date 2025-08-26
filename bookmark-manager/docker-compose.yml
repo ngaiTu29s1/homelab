@@ -1,9 +1,8 @@
-version: "3.9"
-
 services:
   linkding:
-    image: sissbruecker/linkding:latest
+    image: sissbruecker/linkding:1.42.0
     container_name: linkding
+    init: true
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9090"]
       interval: 10s
@@ -16,6 +15,8 @@ services:
     env_file:
       - .env
     restart: unless-stopped
+    environment:
+      - TZ=${TZ}
     networks:
       - linkding
 
@@ -23,12 +24,13 @@ services:
     build:
       context: ./ai_bot
       dockerfile: Dockerfile
+    image: bookmark-manager-linkding_ai:v1
     container_name: linkding-ai
+    init: true
     volumes:
       - ./linkding_ai_data:/data
-      - ./.env:/.env
     env_file:
-      - .env
+      - ./ai_bot/.env
     depends_on:
       linkding:
         condition: service_healthy

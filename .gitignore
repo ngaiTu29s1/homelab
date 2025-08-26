@@ -84,4 +84,3 @@ portainer/backup/
 scripts/*.log
 scripts/*.bak
 
-scripts

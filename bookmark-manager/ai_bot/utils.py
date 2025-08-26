@@ -2,20 +2,9 @@ import os
 import sys
 from dotenv import load_dotenv
 
-# Try to load from different locations to handle docker and local development
-# In Docker, the .env should be available at root (/) via env_file in docker-compose.yml
-locations = ['/.env', '.env', '../.env', os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')]
 
-loaded = False
-for env_path in locations:
-    try:
-        if os.path.exists(env_path):
-            print(f"[DEBUG] Loading .env from: {env_path}")
-            load_dotenv(env_path)
-            loaded = True
-            break
-    except Exception as e:
-        print(f"[WARNING] Failed to load from {env_path}: {str(e)}")
+locations = ['./.env', os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')]
+
 
 if not loaded:
     print("[WARNING] No .env file found in any location", file=sys.stderr)
