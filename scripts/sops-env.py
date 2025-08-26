@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-#!/usr/bin/env python3
-#!/usr/bin/env python3
 import os, sys, re, subprocess
 from pathlib import Path
 from shutil import which
