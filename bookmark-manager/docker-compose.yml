@@ -17,7 +17,7 @@ services:
       - .env
     restart: unless-stopped
     networks:
-      - mynetwork
+      - linkding
 
   linkding_ai:
     build:
@@ -34,8 +34,8 @@ services:
         condition: service_healthy
     restart: unless-stopped
     networks:
-      - mynetwork
+      - linkding
 
 networks:
-  mynetwork:
+  linkding:
     driver: bridge
