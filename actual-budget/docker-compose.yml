@@ -1,0 +1,19 @@
+services:
+  actual:
+    image: actualbudget/actual-server:latest
+    container_name: actual
+    ports:
+      - "5006:5006"            
+    volumes:
+      - ./actual-data:/data    
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+      # (tuỳ chọn) giới hạn kích thước file sync nếu cần:
+      # - ACTUAL_UPLOAD_FILE_SYNC_SIZE_LIMIT_MB=20
+      # - ACTUAL_UPLOAD_SYNC_ENCRYPTED_FILE_SYNC_SIZE_LIMIT_MB=50
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:5006 >/dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
