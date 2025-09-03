@@ -1,0 +1,13 @@
+route /actual* {
+  # BẮT BUỘC cho Chromium/Edge (SharedArrayBuffer)
+  header {
+    Cross-Origin-Opener-Policy "same-origin"
+    Cross-Origin-Embedder-Policy "require-corp"
+    Cross-Origin-Resource-Policy "same-origin"
+    X-Content-Type-Options "nosniff"
+    Referrer-Policy "strict-origin-when-cross-origin"
+  }
+
+  uri strip_prefix /actual
+  reverse_proxy actual:5006
+}

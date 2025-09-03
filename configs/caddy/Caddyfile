@@ -1,0 +1,6 @@
+:8081 {
+  encode zstd gzip
+
+  # Import tất cả snippet của từng service VÀO site block này
+  import conf.d/*.caddy
+}

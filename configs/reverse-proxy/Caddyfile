@@ -1,4 +1,0 @@
-# portainer
-portainer.tutran-dev.id.vn {
-    reverse_proxy portainer:9000
-}
