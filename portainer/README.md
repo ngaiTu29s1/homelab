@@ -1,50 +1,58 @@
-#  Portainer
+# 🐳 Portainer
 
-Portainer provides a simple and powerful web UI to manage your Docker containers, images, networks, and volumes.
+Port## 🚀 Deployment
 
-## 🚀 Features
+1. **Start the service**:
+   ```zsh
+   docker compose up -d
+   ```is a lightweight Docker management UI that provides an easy way to manage Docker environments through a web interface.
 
-- Easy Docker container management via browser
-- Secure access with authentication
-- Stack and Compose file deployment
-- Real-time container logs and stats
+## ✨ Features
 
-## 📦 Folder Structure
+- **Visual Docker Management**: Manage containers, images, networks, and volumes
+- **Stack Deployment**: Deploy multi-container applications with Docker Compose
+- **Resource Monitoring**: Track container performance and resource usage
+- **Access Control**: Role-based user management with fine-grained permissions
+- **Template Library**: Pre-made application templates for quick deployment
+
+## � Project Structure
 
 ```
-.env           # Environment variables (not committed)
-.env.enc       # Encrypted environment file (for secrets)
-Caddyfile      # Caddy reverse proxy config (if used)
-docker-compose.yml
-README.md
+docker-compose.yml  # Container orchestration configuration
+.env               # Environment variables (not committed)
+README.md          # This documentation file
 ```
 
-## 🛠️ Usage
+## � Deployment
 
-1. **Start Portainer:**
-	```sh
-	docker compose up -d
-	```
+1. **Start the service**:
+   ```bash
+   docker-compose up -d
+   ```
 
-2. **Access the UI:**
-	- Open [http://localhost:9000](http://localhost:9000) in your browser (or your server's IP).
+2. **Initial Setup**:
+   - Access the UI at http://your-server-ip:9000
+   - Create your admin account on first login
+   - Connect to your local Docker environment
 
-3. **Reverse Proxy (optional):**
-	- Caddyfile is provided for HTTPS or custom domain setup.
+3. **Behind Reverse Proxy** (recommended):
+   - Configure with Caddy in the `/configs/caddy/Caddyfile`
+   - Access via https://portainer.your-domain.com
 
-## 🔒 Security
+## 💪 Tech Showcase
 
-- Store secrets in `.env.enc` and decrypt as needed.
-- Do not commit `.env` with sensitive data.
+- **Container Orchestration**: Clean Docker Compose setup
+- **Persistence**: Volume mapping for configuration survival
+- **Security**: Password protection and resource isolation
+- **Web UI**: Modern, responsive management interface
+- **Extensibility**: REST API for automation integration
 
-## 📚 References
+## 🔗 Related Components
 
-- [Portainer Docs](https://docs.portainer.io/)
-- [Caddy Docs](https://caddyserver.com/docs/)
-# �📦 Portainer (Homelab Project)
+- [Caddy Reverse Proxy](/configs/caddy)
+- [Homer Dashboard](/dashboard) - Links to all services including Portainer
 
-Manage Docker containers through a graphical web interface with **Portainer CE**.
+## � Resources
 
-## 🚀 Goals
-- Easily manage containers, images, volumes, and networks via browser.
-- Serve as part of a personal Homelab system.
+- [Portainer Documentation](https://docs.portainer.io/)
+- [Docker Compose Reference](https://docs.docker.com/compose/)

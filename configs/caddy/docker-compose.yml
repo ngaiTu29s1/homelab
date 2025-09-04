@@ -1,15 +1,18 @@
 services:
   caddy:
-    image: caddy:2
+    image: caddy:latest
     container_name: caddy
-    ports:
-      - "127.0.0.1:8081:8080"     # <-- Tailscale Serve sẽ trỏ vào đây
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - ./conf.d:/etc/caddy/conf.d:ro
-      - caddy_data:/data
-      - caddy_config:/config
     restart: unless-stopped
+    ports:
+      # Tailscale net only
+      # - "80:80"
+      # - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./data:/data
+      - ./config:/config
+      # Dòng quan trọng để tích hợp với Tailscale
+      - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock
     networks:
       - homelab
 

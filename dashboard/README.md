@@ -1,53 +1,66 @@
-# 🏠 Homelab Dashboard (Homer)
+# 🏠 Homer Dashboard
 
-A beautiful, customizable dashboard for your homelab, powered by [Homer](https://github.com/bastienwirtz/homer).
+A sleek, modern dashboard that provides a unified starting point for all homelab services, powered by [Homer](https://github.com/bastienwirtz/homer).
 
-## ✨ Features
+## 🌟 Features
 
-- Centralized quick links to all your services
-- Custom icons and themes
-- Easy configuration via YAML
+- **Centralized Service Access**: Single page with links to all homelab services
+- **Visual Organization**: Group services by category with custom icons and descriptions
+- **Themeable Interface**: Multiple built-in themes plus support for custom CSS
+- **Mobile-Friendly**: Responsive design works well on all devices
+- **Lightweight**: Static HTML with no database requirements
 
-## 📦 Folder Structure
+## 📂 Project Structure
 
 ```
-.env           # Environment variables (not committed)
-.env.enc       # Encrypted environment file (for secrets)
-docker-compose.yml
-README.md
+docker-compose.yml   # Container configuration
 homer/
-  assets/
-	 *.svg      # Service logos
-	 config.yml # Main Homer config
-	 fetch-logos.sh
-	 themes/    # Custom CSS themes
+  ├── assets/        # Static assets directory
+  │   ├── config.yml # Main configuration file
+  │   ├── *.svg      # Service icons and logos
+  │   └── themes/    # Custom CSS themes
+  └── ...           # Other Homer files
 ```
 
-## ⚡ Quick Start
+## 🚀 Deployment
 
-1. **Start the dashboard:**
-	```sh
-	docker compose up -d
-	```
+1. **Launch the service**:
+   ```zsh
+   docker compose up -d
+   ```
 
-2. **Configure links and appearance:**
-	- Edit `homer/assets/config.yml` for your services and layout.
-	- Add or update logos in `homer/assets/`.
+2. **Access the dashboard**:
+   - http://server-ip:8080 (default)
+   - Or via your configured domain if using a reverse proxy
 
-3. **Access the dashboard:**
-	- Open [http://localhost:8080](http://localhost:8080) (or your server's IP).
+## 💫 Dashboard Showcase
+
+![Dashboard Preview](https://i.imgur.com/OtJGi0T.jpg)
+
+My custom-themed dashboard provides one-click access to:
+
+- Media streaming with Jellyfin
+- Network security with AdGuard Home
+- Container management with Portainer
+- Financial tracking with Firefly III
+- Smart bookmark collection
+- System monitoring and stats
 
 ## 🎨 Customization
 
-- Add new logos to `homer/assets/`.
-- Use or create custom themes in `homer/assets/themes/`.
+- **Add New Services**: Edit `config.yml` to add service entries
+- **Custom Icons**: Place SVG files in `homer/assets/` directory
+- **Change Theme**: Modify the theme setting in `config.yml` or add custom themes in `homer/assets/themes/`
 
-## 🔒 Security
+## � Related Components
 
-- Store secrets in `.env.enc` and decrypt as needed.
-- Do not commit `.env` with sensitive data.
+- [Caddy Reverse Proxy](/configs/caddy) - For secure HTTPS access
+- All other homelab services that appear on the dashboard
 
-## 📚 References
+## 📚 Resources
+
+- [Homer Documentation](https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md)
+- [Font Awesome Icons](https://fontawesome.com/icons) (for service icons)
 
 - [Homer Docs](https://github.com/bastienwirtz/homer)
 # 🖥️ Homelab Dashboard
