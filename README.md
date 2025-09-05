@@ -60,3 +60,4 @@ docker-compose up -d
 - **Security**: HTTPS everywhere with automatic certificate management
 - **Secret Management**: SOPS-encrypted configuration files
 - **Infrastructure as Code**: Version-controlled configuration
+- hehe
