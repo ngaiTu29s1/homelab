@@ -3,7 +3,7 @@ import os, sys, re, subprocess
 from pathlib import Path
 from shutil import which
 
-CONFIG_FILE = os.environ.get("CONFIG_FILE", ".sops.yaml")
+CONFIG_FILE = os.environ.get("CONFIG_FILE", str(Path(__file__).parent / ".sops.yaml"))
 ROOT = Path.cwd()
 
 ENV_REGEX = re.compile(
