@@ -7,8 +7,8 @@ print(f"[DEBUG] GEMINI_API_KEY exists: {bool(GEMINI_API_KEY)}")
 
 try:
     genai.configure(api_key=GEMINI_API_KEY)
-    model = genai.GenerativeModel("gemini-pro")
-    print("[DEBUG] Gemini model initialized successfully")
+    model = genai.GenerativeModel("gemini-2.0-flash-lite")
+    print(f"[DEBUG] Gemini model {model} initialized successfully")
 except Exception as e:
     print(f"[ERROR] Failed to initialize Gemini: {str(e)}")
     # Return a default placeholder response if Gemini fails

@@ -3,11 +3,14 @@ import sys
 from dotenv import load_dotenv
 
 
-locations = ['./.env', os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')]
 
-
-if not loaded:
-    print("[WARNING] No .env file found in any location", file=sys.stderr)
+# Always load .env.dev from the same directory as this script
+env_path = os.path.join(os.path.dirname(__file__), '.env')
+if os.path.isfile(env_path):
+    load_dotenv(dotenv_path=env_path)
+    print(f"[DEBUG] Loaded .env from {env_path}")
+else:
+    print("[WARNING] .env.dev not found in ai_bot directory", file=sys.stderr)
 
 # Print variables for debugging
 print(f"[DEBUG] LINKDING_HOST in utils.py: {os.getenv('LINKDING_HOST')}")

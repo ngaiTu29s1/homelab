@@ -29,6 +29,7 @@ services:
     init: true
     volumes:
       - ./linkding_ai_data:/data
+      - ./ai_bot:/app
     env_file:
       - ./ai_bot/.env
     depends_on:

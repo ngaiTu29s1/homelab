@@ -1,9 +1,8 @@
-
 import httpx
 from utils import get_env
 
 # Lấy biến môi trường và in ra để debug
-LD_HOST = get_env("LINKDING_HOST", "http://linkding:9090")
+LD_HOST = get_env("LINKDING_HOST")
 LD_TOKEN = get_env("LINKDING_TOKEN")
 print(f"[DEBUG] LINKDING_HOST = {LD_HOST}")
 print(f"[DEBUG] LINKDING_TOKEN = {LD_TOKEN[:6] + '...' if LD_TOKEN else None}")
