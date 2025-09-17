@@ -7,7 +7,7 @@ CONFIG_FILE = os.environ.get("CONFIG_FILE", str(Path(__file__).parent / ".sops.y
 ROOT = Path.cwd()
 
 ENV_REGEX = re.compile(
-    r"^\.env(?:\.[A-Za-z0-9_-]+)?$"
+    r"^\.env(?:\.[A-Za-z0-9_-]+)*$"
 )  # .env, .env.local, .env.prod ...
 ENC_SUFFIX = ".enc"
 
@@ -15,11 +15,6 @@ ENC_SUFFIX = ".enc"
 def die(msg: str, code: int = 1):
     print(f"ERROR: {msg}", file=sys.stderr)
     sys.exit(code)
-
-
-# --- thêm vào đầu file (sau import) ---
-from os import path
-
 
 def find_keyfile():
     # Ưu tiên biến môi trường nếu user đã set

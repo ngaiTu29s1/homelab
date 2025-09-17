@@ -1,5 +1,5 @@
 creation_rules:
-  - path_regex: '([A-Za-z]:)?[\\/].*[\\/]\.env(\.[A-Za-z0-9_-]+)?(\.enc)?$'
+  - path_regex: '([A-Za-z]:)?[\\/].*[\\/]\.env(\.[A-Za-z0-9_-]+)*(\.enc)?$'
     encrypted_regex: '^(.*)$'
     key_groups:
       - age:
