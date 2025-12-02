@@ -1,0 +1,28 @@
+version: "3"
+services:
+  webtop:
+    image: lscr.io/linuxserver/webtop:ubuntu-xfce
+    container_name: webtop
+    restart: no
+    ipc: host
+    devices:
+      - /dev/dri:/dev/dri
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Ho_Chi_Minh
+      - CUSTOM_USER=${WEBTOP_USER}
+      - PASSWORD=${WEBTOP_PASS}
+    volumes:
+      # Config riêng của Webtop
+      - ./webtop_config:/config
+      # Map thư mục Home của User SSH (tu) vào Desktop ảo
+      # - /home/tu:/data/Host_Home
+    ports:
+      - 3819:3001
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true

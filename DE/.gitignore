@@ -1,0 +1,21 @@
+# 1. Security (SỐNG CÒN)
+.env
+.env.*
+*.pem
+*.key
+
+# 2. Docker Volumes & Data (Dữ liệu động không được commit)
+# Nếu commit cái này, repo sẽ nặng hàng GB vì chứa cache trình duyệt
+webtop_config/
+my_project_data/
+n8n_data/
+# Bất kỳ thư mục volume nào khác người sẽ map sau này
+
+# 3. System Files (Rác hệ thống)
+.DS_Store
+Thumbs.db
+._*
+
+# 4. Logs
+*.log
+npm-debug.log*
