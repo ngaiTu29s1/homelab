@@ -3,6 +3,7 @@
 .env.*
 *.pem
 *.key
+!env.enc
 
 # 2. Docker Volumes & Data (Dữ liệu động không được commit)
 # Nếu commit cái này, repo sẽ nặng hàng GB vì chứa cache trình duyệt
