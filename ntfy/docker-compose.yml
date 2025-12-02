@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  ntfy:
+    image: binwiederhier/ntfy
+    container_name: ntfy
+    command:
+      - serve
+    environment:
+      # Cài đặt múi giờ của ntfy. Người có thể đổi UTC thành Asia/Ho_Chi_Minh nếu muốn.
+      - TZ=Asia/Ho_Chi_Minh
+    volumes:
+      # Dùng Bind Mount cục bộ (local) để lưu trữ dữ liệu ntfy
+      - ./ntfy_data:/var/cache/ntfy 
+      - ./ntfy_config:/etc/ntfy  # Thư mục chứa cấu hình server.yml nếu cần tùy chỉnh sau này
+    ports:
+      # Map cổng 8081 trên máy chủ ra cổng 80 trong container.
+      # Người sẽ truy cập ntfy bằng IP_CỦA_SERVER:8081
+      - "8081:80" 
+    networks:
+      # Kết nối vào mạng Docker chung của các service homelab
+      - homelab 
+    restart: unless-stopped
+    
+networks:
+  homelab:
+    # LƯU Ý: Phải sử dụng chế độ 'external' để kết nối vào mạng Docker đã tồn tại.
+    external: true
