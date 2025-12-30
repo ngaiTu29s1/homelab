@@ -2,13 +2,14 @@
     - Netdata:
         icon: netdata.png
         href: http://debian:19999
-        description: Monitor chi tiết hệ thống
+        description: Real-time Performance Monitoring
         container: netdata # Tự động lấy stats từ container tên 'netdata'
         server: my-docker
 
     - Uptime Kuma:
         icon: uptime-kuma.png
-        href: http://debian:${KUMA_PORT}
+        href: http://debian:3001
+        description: Uptime Monitoring
         container: uptime-kuma
         server: my-docker
         widget:
@@ -33,7 +34,7 @@
     - Portainer:
         icon: portainer.png
         href: http://debian:9000 # Link để bấm vào quản lý
-        description: Quản lý Docker
+        description: Container Management
         container: portainer-portainer-1
         server: my-docker
         widget:
