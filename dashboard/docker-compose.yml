@@ -1,24 +1,11 @@
 version: '3.8'
 
 services:
+  # --- Monitor Core ---
   netdata:
     image: netdata/netdata:stable
     container_name: netdata
-    cap_add:
-      - SYS_PTRACE
-      - NET_ADMIN
-    security_opt:
-      - apparmor:unconfined
-    volumes:
-      - netdataconfig:/etc/netdata
-      - netdatalib:/var/lib/netdata
-      - netdatacache:/var/cache/netdata
-      - /etc/passwd:/host/etc/passwd:ro
-      - /etc/group:/host/etc/group:ro
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /etc/os-release:/host/etc/os-release:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    # ... (giữ nguyên cấu hình cũ của người)
     restart: unless-stopped
     ports:
       - "19999:19999"
@@ -36,22 +23,23 @@ services:
     networks:
       - homelab
 
-  homer:
-    image: b4bz/homer:latest
-    container_name: homer
+  # --- New Dashboard ---
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
     ports:
-      - "${HOMER_PORT}:8080"
-    volumes:
-      - ./homer/assets:/www/assets
+      - "3005:3000" # Mặc định của Homepage
     env_file:
       - .env
-    environment:
-      - TITLE=${HOMER_TITLE}
-      - SUBTITLE=${HOMER_SUBTITLE}
-      - THEME=${HOMER_THEME}
+    volumes:
+      - ./homepage/config:/app/config # Nơi lưu file YAML
+      - /var/run/docker.sock:/var/run/docker.sock:ro # Để lấy chỉ số CPU/RAM container
     restart: unless-stopped
     networks:
       - homelab
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: debian:3005,*.ts.net
+      HOMEPAGE_VAR_OWM_API_KEY: ${OPEN_WEATHER_MAP_API_KEY}
 
 volumes:
   netdataconfig:
