@@ -83,5 +83,3 @@ portainer/backup/
 # Scripts
 scripts/*.log
 scripts/*.bak
-
-actual-budget/
