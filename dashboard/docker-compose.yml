@@ -34,6 +34,7 @@ services:
     volumes:
       - ./homepage/config:/app/config # Nơi lưu file YAML
       - /var/run/docker.sock:/var/run/docker.sock:ro # Để lấy chỉ số CPU/RAM container
+      - ./homepage/images:/app/public/images # Nơi lưu icon tùy chỉnh
     restart: unless-stopped
     networks:
       - homelab
