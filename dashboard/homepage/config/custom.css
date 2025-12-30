@@ -1,0 +1,13 @@
+/* Làm trong suốt các thẻ Service */
+.ServiceCard {
+    background: rgba(255, 255, 255, 0.1) !important; /* Độ trong suốt */
+    backdrop-filter: blur(10px) !important; /* Làm mờ nền sau thẻ */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Đổi màu chữ tiêu đề thành vàng kim (Royal Gold) */
+h1, h2, h3 {
+    color: #ffd700 !important;
+    text-shadow: 1px 1px 2px black;
+}

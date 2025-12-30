@@ -1,0 +1,20 @@
+- resources:
+    cpu: true
+    memory: true
+    disk: /
+    cputemp: true
+    label: "Lenovo i3-6100"
+    uptime: true
+    units: metric
+    refresh: 3000
+    network: true
+
+- openweathermap:
+    label: "Hanoi"
+    latitude: 21.0285
+    longitude: 105.8542
+    units: metric
+    apiKey: "{{HOMEPAGE_VAR_OWM_API_KEY}}"
+    cache: 5
+    format: # optional, Intl.NumberFormat options
+      maximumFractionDigits: 1
