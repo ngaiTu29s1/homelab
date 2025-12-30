@@ -1,13 +1,16 @@
 - resources:
+    label: "Lenovo i3-6100"
     cpu: true
     memory: true
-    disk: /
+    disk:
+        - /
+
     cputemp: true
-    label: "Lenovo i3-6100"
     uptime: true
     units: metric
     refresh: 3000
     network: true
+
 
 - openweathermap:
     label: "Hanoi"
@@ -18,3 +21,9 @@
     cache: 5
     format: # optional, Intl.NumberFormat options
       maximumFractionDigits: 1
+
+- search:
+    provider: [google, duckduckgo, brave, reddit] # google, duckduckgo, bing, baidu, brave or custom
+    focus: TRUE # Optional, will set focus to the search bar on page load
+    showSearchSuggestions: true # Optional, will show search suggestions. Defaults to false
+    target: _blank # One of _self, _blank, _parent or _top

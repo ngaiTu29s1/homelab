@@ -27,7 +27,7 @@
        # widget:
         #    type: n8n
          #   url: http://n8n-n8n-1:5678 # URL nội bộ Docker
-          #  key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNGNkNTYyNS00YTY0LTRiOGUtYjdhMS03NzRjZTI0MDhhY2QiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzY2OTk2NTk4fQ.WqXgn-_cIcTe5j5XUI2G0oqbImoQ_XfMjjAq2PBiGjo" # Dán key vào đây
+          #  key: "" # Dán key vào đây
 
 - Management:
     - Portainer:
@@ -40,4 +40,4 @@
             type: portainer
             url: http://portainer:9000 # URL nội bộ Docker
             env: 3  # ID của môi trường local (thường là 1 hoặc 2)
-            key: ptr_krTwTMcAf5L1xvZeL8gAwp8dvKZMKrDk+5GyXz4OL4M= # Dán cái Access Token vào đây
+            key: "{{HOMEPAGE_VAR_PORTAINER_ACCESS_TOKEN}}" # Dán cái Access Token vào đây
