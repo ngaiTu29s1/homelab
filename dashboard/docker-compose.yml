@@ -40,6 +40,7 @@ services:
     environment:
       HOMEPAGE_ALLOWED_HOSTS: debian:3005,*.ts.net
       HOMEPAGE_VAR_OWM_API_KEY: ${OPEN_WEATHER_MAP_API_KEY}
+      HOMEPAGE_VAR_PORTAINER_ACCESS_TOKEN: ${PORTAINER_ACCESS_TOKEN}
 
 volumes:
   netdataconfig:
