@@ -1,0 +1,44 @@
+- Infrastructure:
+    - Netdata:
+        icon: netdata.png
+        href: http://debian:19999
+        description: Real-time Performance Monitoring
+        container: netdata # Tự động lấy stats từ container tên 'netdata'
+        server: my-docker
+
+    - Uptime Kuma:
+        icon: uptime-kuma.png
+        href: http://debian:3001
+        description: Uptime Monitoring
+        container: uptime-kuma
+        server: my-docker
+        widget:
+          type: uptimekuma
+          url: http://uptime-kuma:3001 # URL nội bộ trong docker network
+          slug: default # Tên status page trong Kuma
+
+- Automation:
+    - n8n:
+        icon: n8n.png
+        href: https://n8n.tutran-dev.id.vn
+        container: n8n-n8n-1
+        server: my-docker
+        description: Workflow Automation
+        # Phải thụt đầu dòng tạo block widget riêng
+       # widget:
+        #    type: n8n
+         #   url: http://n8n-n8n-1:5678 # URL nội bộ Docker
+          #  key: "" # Dán key vào đây
+
+- Management:
+    - Portainer:
+        icon: portainer.png
+        href: http://debian:9000 # Link để bấm vào quản lý
+        description: Container Management
+        container: portainer-portainer-1
+        server: my-docker
+        widget:
+            type: portainer
+            url: http://portainer:9000 # URL nội bộ Docker
+            env: 3  # ID của môi trường local (thường là 1 hoặc 2)
+            key: "{{HOMEPAGE_VAR_PORTAINER_ACCESS_TOKEN}}" # Dán cái Access Token vào đây

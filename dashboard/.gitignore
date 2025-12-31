@@ -1,0 +1,29 @@
+# Environment files (keep .env.enc as it's encrypted)
+.env
+
+# Logs
+logs/
+*.log
+homepage/config/logs/
+
+# Cache and temporary files
+*.cache
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Homer asset caches
+homer/assets/cache/
+
+homepage/config/secrets.yaml
