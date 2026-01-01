@@ -1,0 +1,9 @@
+# Nginx / Nginx Proxy Manager Data
+data/
+letsencrypt/
+
+# Environment variables
+.env
+
+# Logs
+*.log
