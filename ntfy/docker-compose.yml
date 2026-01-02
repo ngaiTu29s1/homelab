@@ -13,7 +13,7 @@ services:
       # [QUAN TRỌNG] Báo cho ntfy biết nó đang đứng sau Cloudflare
       # Để nó xử lý đúng IP client và WebSocket
       - NTFY_BEHIND_PROXY=true 
-      
+      - NTFY_LISTEN_HTTP=:80
       # (Optional) Nếu người muốn bật tính năng iOS (cần upstream server)
       # - NTFY_UPSTREAM_BASE_URL=https://ntfy.sh
       
@@ -26,8 +26,8 @@ services:
       # File cũ của người map vào /var/cache/ntfy là sai chỗ, nên data sẽ mất khi restart
       - ./ntfy_data:/var/lib/ntfy
       - ./ntfy_config:/etc/ntfy 
-    ports:
-      - "8081:80"
+    # ports:
+    #   - "8081:80"
     networks:
       - homelab
     restart: unless-stopped
