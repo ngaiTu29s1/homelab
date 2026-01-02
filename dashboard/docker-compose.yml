@@ -27,8 +27,8 @@ services:
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
-    ports:
-      - "3005:3000" # Mặc định của Homepage
+    #ports:
+    #  - "3005:3000" # Mặc định của Homepage
     env_file:
       - .env
     volumes:
@@ -39,7 +39,7 @@ services:
     networks:
       - homelab
     environment:
-      HOMEPAGE_ALLOWED_HOSTS: debian:3005,*.ts.net
+      HOMEPAGE_ALLOWED_HOSTS: debian:3005,dashboard.tutran-dev.id.vn
       HOMEPAGE_VAR_OWM_API_KEY: ${OPEN_WEATHER_MAP_API_KEY}
       HOMEPAGE_VAR_PORTAINER_ACCESS_TOKEN: ${PORTAINER_ACCESS_TOKEN}
 
