@@ -31,6 +31,22 @@ services:
     networks:
       - homelab
 
+  opds-abs:
+    image: ghcr.io/petr-prikryl/opds-abs:latest
+    container_name: opds-abs
+    restart: unless-stopped
+    environment:
+      # Đường dẫn nội bộ để nó gọi sang ABS
+      # Lưu ý: Nếu chung network thì dùng tên service 'audiobookshelf'
+      - AUDIOBOOKSHELF_URL=http://audiobookshelf:80
+    ports:
+      # Mở cổng 8089 ra ngoài (Hoàng thượng có thể đổi nếu thích)
+      - 8089:8000
+    depends_on:
+      - audiobookshelf
+    networks:
+      - homelab
+
 networks:
   homelab:
     external: true
