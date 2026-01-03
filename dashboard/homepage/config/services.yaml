@@ -44,6 +44,7 @@
         widget:
           type: audiobookshelf
           url: http://audiobookshelf:80
+          key: "{{HOMEPAGE_VAR_ABS_API_KEY}}"
 
     - Calibre:
         icon: calibre.png

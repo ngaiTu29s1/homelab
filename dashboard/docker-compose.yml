@@ -42,7 +42,7 @@ services:
       HOMEPAGE_ALLOWED_HOSTS: debian:3005,dashboard.tutran-dev.id.vn
       HOMEPAGE_VAR_OWM_API_KEY: ${OPEN_WEATHER_MAP_API_KEY}
       HOMEPAGE_VAR_PORTAINER_ACCESS_TOKEN: ${PORTAINER_ACCESS_TOKEN}
-
+      HOMEPAGE_VAR_ABS_API_KEY: ${ABS_API_KEY}
 volumes:
   netdataconfig:
   netdatalib:
