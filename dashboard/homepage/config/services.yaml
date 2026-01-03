@@ -1,10 +1,35 @@
 - Infrastructure:
+    - AdGuard Home:
+        icon: adguard-home.png
+        href: https://adguard.tutran-dev.id.vn
+        container: adguardhome
+        server: my-docker
+        description: Network-wide Ad Blocking
+        widget:
+          type: adguard
+          url: http://adguardhome:80
+
+    - Nginx Proxy Manager:
+        icon: nginx-proxy-manager.png
+        href: https://nginx.tutran-dev.id.vn
+        container: npm
+        server: my-docker
+        description: Reverse Proxy Manager
+        widget:
+            type: npm
+            url: http://npm:81
+            username: "{{HOMEPAGE_VAR_NPM_USERNAME}}"
+            password: "{{HOMEPAGE_VAR_NPM_PASSWORD}}"
+
     - Netdata:
         icon: netdata.png
         href: http://debian:19999
         description: Real-time Performance Monitoring
-        container: netdata # Tự động lấy stats từ container tên 'netdata'
+        container: netdata
         server: my-docker
+        widget:
+          type: netdata
+          url: http://netdata:19999
 
     - Uptime Kuma:
         icon: uptime-kuma.png
@@ -14,8 +39,35 @@
         server: my-docker
         widget:
           type: uptimekuma
-          url: http://uptime-kuma:3001 # URL nội bộ trong docker network
-          slug: default # Tên status page trong Kuma
+          url: http://uptime-kuma:3001
+          slug: default
+
+- Media:
+    - Audiobookshelf:
+        icon: audiobookshelf.png
+        href: https://abs.tutran-dev.id.vn
+        container: audiobookshelf
+        server: my-docker
+        description: Audiobook & Podcast Server
+        widget:
+            type: audiobookshelf
+            url: http://audiobookshelf:80
+            key: "{{HOMEPAGE_VAR_ABS_API_KEY}}"
+            fields: ["books", "podcasts"]
+
+    - Calibre:
+        icon: calibre.png
+        href: https://calibre.tutran-dev.id.vn
+        container: calibre
+        server: my-docker
+        description: E-book Management
+
+    - OPDS-ABS:
+        icon: audiobookshelf.png
+        href: http://debian:8089
+        container: opds-abs
+        server: my-docker
+        description: OPDS Bridge for Audiobookshelf
 
 - Automation:
     - n8n:
@@ -24,21 +76,30 @@
         container: n8n-n8n-1
         server: my-docker
         description: Workflow Automation
-        # Phải thụt đầu dòng tạo block widget riêng
-       # widget:
-        #    type: n8n
-         #   url: http://n8n-n8n-1:5678 # URL nội bộ Docker
-          #  key: "" # Dán key vào đây
+
+    - n8n Beta:
+        icon: n8n.png
+        href: http://debian:5679
+        container: n8n_v2_beta
+        server: my-docker
+        description: Workflow Automation (v2 Beta)
+
+    - ntfy:
+        icon: ntfy.png
+        href: https://ntfy.tutran-dev.id.vn
+        container: ntfy
+        server: my-docker
+        description: Unified Push Notifications
 
 - Management:
     - Portainer:
         icon: portainer.png
-        href: http://debian:9000 # Link để bấm vào quản lý
+        href: https://portainer.tutran-dev.id.vn
         description: Container Management
-        container: portainer-portainer-1
+        container: portainer
         server: my-docker
         widget:
             type: portainer
-            url: http://portainer:9000 # URL nội bộ Docker
-            env: 3  # ID của môi trường local (thường là 1 hoặc 2)
-            key: "{{HOMEPAGE_VAR_PORTAINER_ACCESS_TOKEN}}" # Dán cái Access Token vào đây
+            url: http://portainer:9000
+            env: 3
+            key: "{{HOMEPAGE_VAR_PORTAINER_ACCESS_TOKEN}}"
