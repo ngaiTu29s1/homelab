@@ -15,6 +15,11 @@
         container: npm
         server: my-docker
         description: Reverse Proxy Manager
+        widget:
+            type: npm
+            url: http://npm:81
+            username: "{{HOMEPAGE_VAR_NPM_USERNAME}}"
+            password: "{{HOMEPAGE_VAR_NPM_PASSWORD}}"
 
     - Netdata:
         icon: netdata.png
@@ -42,9 +47,10 @@
         server: my-docker
         description: Audiobook & Podcast Server
         widget:
-          type: audiobookshelf
-          url: http://audiobookshelf:80
-          key: "{{HOMEPAGE_VAR_ABS_API_KEY}}"
+            type: audiobookshelf
+            url: http://audiobookshelf:80
+            key: "{{HOMEPAGE_VAR_ABS_API_KEY}}"
+            fields: ["books", "podcasts"]
 
     - Calibre:
         icon: calibre.png
