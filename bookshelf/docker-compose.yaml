@@ -1,0 +1,52 @@
+services:
+  calibre:
+    image: lscr.io/linuxserver/calibre:latest
+    container_name: calibre
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${ROOT_DATA_DIR}/config/calibre:/config
+      - ${ROOT_DATA_DIR}/library:/books
+    ports:
+      - ${CALIBRE_GUI_PORT}:8080
+      - ${CALIBRE_CONTENT_PORT}:8081
+    restart: unless-stopped
+    networks:
+      - homelab
+
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${ROOT_DATA_DIR}/config/audiobookshelf:/config
+      - ${ROOT_DATA_DIR}/metadata:/metadata
+      - ${ROOT_DATA_DIR}/library:/books:ro
+    ports:
+      - ${ABS_PORT}:80
+    restart: unless-stopped
+    networks:
+      - homelab
+
+  opds-abs:
+    image: ghcr.io/petr-prikryl/opds-abs:latest
+    container_name: opds-abs
+    restart: unless-stopped
+    environment:
+      # Đường dẫn nội bộ để nó gọi sang ABS
+      # Lưu ý: Nếu chung network thì dùng tên service 'audiobookshelf'
+      - AUDIOBOOKSHELF_URL=http://audiobookshelf:80
+    ports:
+      # Mở cổng 8089 ra ngoài (Hoàng thượng có thể đổi nếu thích)
+      - 8089:8000 # My kobo only
+    depends_on:
+      - audiobookshelf
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true
