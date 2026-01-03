@@ -1,5 +1,6 @@
 services:
   portainer:
+    container_name: portainer
     image: portainer/portainer-ce:2.33.0-alpine
     ports:
       - "${PORTAINER_PORT}:9000"
