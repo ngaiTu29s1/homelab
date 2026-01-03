@@ -27,6 +27,9 @@
         description: Real-time Performance Monitoring
         container: netdata
         server: my-docker
+        widget:
+          type: netdata
+          url: http://netdata:19999
 
     - Uptime Kuma:
         icon: uptime-kuma.png
@@ -93,7 +96,7 @@
         icon: portainer.png
         href: https://portainer.tutran-dev.id.vn
         description: Container Management
-        container: portainer-portainer-1
+        container: portainer
         server: my-docker
         widget:
             type: portainer
