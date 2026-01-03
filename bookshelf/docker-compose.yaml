@@ -41,7 +41,7 @@ services:
       - AUDIOBOOKSHELF_URL=http://audiobookshelf:80
     ports:
       # Mở cổng 8089 ra ngoài (Hoàng thượng có thể đổi nếu thích)
-      - 8089:8000
+      - 8089:8000 # My kobo only
     depends_on:
       - audiobookshelf
     networks:
