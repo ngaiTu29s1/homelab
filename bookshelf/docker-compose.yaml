@@ -25,6 +25,8 @@ services:
       - ${ROOT_DATA_DIR}/config/audiobookshelf:/config
       - ${ROOT_DATA_DIR}/metadata:/metadata
       - ${ROOT_DATA_DIR}/library:/books:ro
+
+      - /mnt/hdd500/audiobooks:/audiobooks #audiobook 
     ports:
       - ${ABS_PORT}:80
     restart: unless-stopped
