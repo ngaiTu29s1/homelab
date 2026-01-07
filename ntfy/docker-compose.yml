@@ -10,24 +10,31 @@ services:
       - TZ=Asia/Ho_Chi_Minh
       - NTFY_BASE_URL=https://ntfy.tutran-dev.id.vn
       
-      # [QUAN TRỌNG] Báo cho ntfy biết nó đang đứng sau Cloudflare
-      # Để nó xử lý đúng IP client và WebSocket
-      - NTFY_BEHIND_PROXY=true 
-      - NTFY_LISTEN_HTTP=:80
-      # (Optional) Nếu người muốn bật tính năng iOS (cần upstream server)
-      # - NTFY_UPSTREAM_BASE_URL=https://ntfy.sh
+      # --- CẤU HÌNH MẠNG ---
+      - NTFY_BEHIND_PROXY=true
+      - NTFY_LISTEN_HTTP=:80 
       
-      # Cấu hình Cache để xem lại lịch sử tin nhắn
+      # --- BẢO MẬT (QUAN TRỌNG) ---
+      # 1. Khóa cửa mặc định
+      - NTFY_AUTH_DEFAULT_ACCESS=deny-all
+      # 2. Bật chức năng login trên web
+      - NTFY_ENABLE_LOGIN=true
+      # 3. Chỉ định file lưu user/pass (Sẽ tạo ở bước sau)
+      - NTFY_AUTH_FILE=/var/lib/ntfy/user.db
+      
+      # --- CACHE ---
       - NTFY_CACHE_FILE=/var/lib/ntfy/cache.db
       - NTFY_ATTACHMENT_CACHE_DIR=/var/lib/ntfy/attachments
       - NTFY_KEEPALIVE_INTERVAL=45s
+
     volumes:
-      # [SỬA LỖI] Đường dẫn chuẩn của ntfy image là /var/lib/ntfy
-      # File cũ của người map vào /var/cache/ntfy là sai chỗ, nên data sẽ mất khi restart
       - ./ntfy_data:/var/lib/ntfy
       - ./ntfy_config:/etc/ntfy 
-    # ports:
-    #   - "8081:80"
+    
+    # TUYỆT ĐỐI KHÔNG MỞ PORTS VÌ ĐÃ DÙNG NPM
+    ports:
+      - "8081:80"
+    
     networks:
       - homelab
     restart: unless-stopped
