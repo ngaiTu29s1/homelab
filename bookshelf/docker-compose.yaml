@@ -26,7 +26,8 @@ services:
       - ${ROOT_DATA_DIR}/metadata:/metadata
       - ${ROOT_DATA_DIR}/library:/books:ro
 
-      - /mnt/hdd500/audiobooks:/audiobooks #audiobook 
+      - /mnt/hdd500/audiobooks:/audiobooks #audiobook
+      - /mnt/hdd500/podcast:/podcast #podcast
     ports:
       - ${ABS_PORT}:80
     restart: unless-stopped
