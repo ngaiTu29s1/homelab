@@ -7,7 +7,7 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /home/tu:/srv #change 'user' for the name of your account
+      - /home/tu:/srv/home #change 'user' for the name of your account
       - ./database:/database #this will create the filebrowser.db file
       - ./config:/config #this will create the settings.json file
       - /mnt/hdd500:/srv/hdd500 # Mount external drive

@@ -103,3 +103,16 @@
             url: http://portainer:9000
             env: 3
             key: "{{HOMEPAGE_VAR_PORTAINER_ACCESS_TOKEN}}"
+
+    - Filebrowser:
+        icon: filebrowser.png
+        href: https://filebrowser.tutran-dev.id.vn
+        container: filebrowser
+        server: my-docker
+        description: File Manager
+        widget:
+            type: filebrowser
+            url: http://filebrowser:80 # Cổng nội bộ container là 80
+            username: "{{HOMEPAGE_VAR_FILEBROWSER_USERNAME}}"
+            password: "{{HOMEPAGE_VAR_FILEBROWSER_PASSWORD}}" # Bạn nên đổi pass này sau và dùng biến môi trường
+            fields: ["available", "used", "total"]
