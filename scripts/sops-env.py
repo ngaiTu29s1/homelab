@@ -105,6 +105,11 @@ def write_lf(path: Path, text: str):
         f.write(text)
 
 
+def cleanup_env_content(text):
+    # Loại bỏ dòng trống và khoảng trắng thừa đầu/cuối dòng
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    return "\n".join(lines)
+
 def encrypt():
     targets = list_env_files()
     if not targets:
@@ -113,12 +118,36 @@ def encrypt():
     print("🔒 Encrypting *.env → *.env.enc ...")
     for f in targets:
         out = Path(str(f) + ENC_SUFFIX)
+        should_encrypt = True
+
         if out.exists():
-            print(f"⏭️  Skip {f} → {out} (already exists)")
-            continue
-        print(f"→ {f}  →  {out}")
-        text = run_sops(["-e"], f)
-        write_lf(out, text)
+            try:
+                # 1. Đọc nội dung file gốc
+                src_text = f.read_text(encoding="utf-8")
+                
+                # 2. Giải mã file .enc hiện tại
+                existing_decrypted = run_sops(["-d"], out)
+
+                # 3. So sánh sau khi đã làm sạch (bỏ dòng trống)
+                src_clean = cleanup_env_content(src_text)
+                dec_clean = cleanup_env_content(existing_decrypted)
+                
+                if src_clean == dec_clean:
+                    print(f"⏭️  Skip {f} (content unchanged)")
+                    should_encrypt = False
+                else:
+                    # DEBUG nếu vẫn khác
+                    # print(f"⚠️  Diff detected for {f}")
+                    pass 
+            except Exception:
+                pass
+
+        if should_encrypt:
+            if out.exists():
+                out.unlink()
+            print(f"→ {f}  →  {out}")
+            text = run_sops(["-e"], f)
+            write_lf(out, text)
     print("✅ Done. Commit only *.env.enc")
 
 
