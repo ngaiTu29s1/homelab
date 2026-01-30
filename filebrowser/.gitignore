@@ -1,0 +1,6 @@
+# Filebrowser Data
+database/
+*.db
+
+# Filebrowser Config (Auto-generated)
+config/settings.json
