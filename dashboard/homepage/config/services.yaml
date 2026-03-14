@@ -23,7 +23,7 @@
 
     - Netdata:
         icon: netdata.png
-        href: http://debian:19999
+        href: http://100.113.133.42:19999
         description: Real-time Performance Monitoring
         container: netdata
         server: my-docker
@@ -33,7 +33,7 @@
 
     - Uptime Kuma:
         icon: uptime-kuma.png
-        href: http://debian:3001
+        href: http://100.113.133.42:3001
         description: Uptime Monitoring
         container: uptime-kuma
         server: my-docker
@@ -64,7 +64,7 @@
 
     - OPDS-ABS:
         icon: audiobookshelf.png
-        href: http://debian:8089
+        href: http://100.113.133.42:8089
         container: opds-abs
         server: my-docker
         description: OPDS Bridge for Audiobookshelf
@@ -90,12 +90,6 @@
         container: ntfy
         server: my-docker
         description: Unified Push Notifications
-
-    - OpenClaw:
-        icon: openclaw.png
-        href: https://claw.tutran-dev.id.vn
-        description: AI Assistant & Automation
-        ping: http://100.113.133.42:18789
 
 - Management:
     - Portainer:
