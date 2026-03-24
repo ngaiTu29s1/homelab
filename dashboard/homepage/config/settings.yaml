@@ -6,12 +6,49 @@ title: Tu's Homelab Dashboard
 
 description: A description of my awesome homepage
 
+theme: dark
+color: slate
+
+layout:
+  Infrastructure:
+    tab: Admin
+    style: row
+    columns: 4
+  Management:
+    tab: Admin
+    style: row
+    columns: 4
+  Media:
+    tab: Apps
+    style: row
+    columns: 4
+  Automation:
+    tab: Apps
+    style: row
+    columns: 4
+  Developer:
+    tab: Bookmarks
+    style: row
+    columns: 4
+  AI Tools:
+    tab: Bookmarks
+    style: row
+    columns: 4
+  News & Social:
+    tab: Bookmarks
+    style: row
+    columns: 4
+  Entertainment:
+    tab: Bookmarks
+    style: row
+    columns: 4
+
 background:
-  image: https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fit=crop&w=2560&q=80
-  blur: sm # sm, "", md, xl... see https://tailwindcss.com/docs/backdrop-blur
-  saturate: 50 # 0, 50, 100... see https://tailwindcss.com/docs/backdrop-saturate
-  brightness: 50 # 0, 50, 75... see https://tailwindcss.com/docs/backdrop-brightness
-  opacity: 50 # 0-100
+  image: https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop
+  blur: sm
+  saturate: 50
+  brightness: 50
+  opacity: 70
 
 favicon: https://www.google.com/favicon.ico
 

@@ -4,15 +4,41 @@
 
 - Developer:
     - Github:
-        - abbr: GH
+        - icon: github.png
           href: https://github.com/
+    - Docker:
+        - icon: docker.png
+          href: https://hub.docker.com/
+    - StackOverflow:
+        - icon: stackoverflow.png
+          href: https://stackoverflow.com/
 
-- Social:
+- AI Tools:
+    - ChatGPT:
+        - icon: chatgpt.png
+          href: https://chatgpt.com/
+    - Claude:
+        - icon: claude.png
+          href: https://claude.ai/
+    - Gemini:
+        - icon: google-gemini.png
+          href: https://gemini.google.com/
+
+- News & Social:
+    - Hacker News:
+        - icon: ycombinator.png
+          href: https://news.ycombinator.com/
     - Reddit:
-        - abbr: RE
+        - icon: reddit.png
           href: https://reddit.com/
 
 - Entertainment:
     - YouTube:
-        - abbr: YT
+        - icon: youtube.png
           href: https://youtube.com/
+    - Spotify:
+        - icon: spotify.png
+          href: https://open.spotify.com/
+    - Netflix:
+        - icon: netflix.png
+          href: https://netflix.com/

@@ -1,13 +1,16 @@
 /* Làm trong suốt các thẻ Service */
 .ServiceCard {
-    background: rgba(255, 255, 255, 0.1) !important; /* Độ trong suốt */
-    backdrop-filter: blur(10px) !important; /* Làm mờ nền sau thẻ */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.05) !important; /* Độ trong suốt tinh tế hơn */
+    backdrop-filter: blur(12px) !important; /* Làm mờ mịn hơn kiểu Apple */
+    -webkit-backdrop-filter: blur(12px) !important; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border-radius: 12px; /* Thêm bo góc mềm mại */
 }
 
-/* Đổi màu chữ tiêu đề thành vàng kim (Royal Gold) */
+/* Đổi màu chữ tiêu đề thành trắng hiện đại / mượt mà */
 h1, h2, h3 {
-    color: #ffd700 !important;
-    text-shadow: 1px 1px 2px black;
+    color: #ffffff !important;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* Bóng đổ mềm hơn, ko gắt */
+    font-weight: 600;
 }
