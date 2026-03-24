@@ -91,6 +91,11 @@
         server: my-docker
         description: Unified Push Notifications
 
+    - OpenClaw:
+        icon: openclaw.png
+        href: https://openclaw.tutran-dev.id.vn
+        description: Autonomous AI Agent
+
 - Management:
     - Portainer:
         icon: portainer.png
