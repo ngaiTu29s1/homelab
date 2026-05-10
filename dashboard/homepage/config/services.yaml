@@ -96,6 +96,12 @@
         href: https://openclaw.tutran-dev.id.vn
         description: Autonomous AI Agent
 
+- AI:
+    - OmniRoute:
+        icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/web.png
+        href: https://omniroute.tutran-dev.id.vn
+        description: AI gateway and universal API proxy
+
 - Management:
     - Portainer:
         icon: portainer.png
