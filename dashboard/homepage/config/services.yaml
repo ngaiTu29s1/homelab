@@ -102,6 +102,13 @@
         href: https://omniroute.tutran-dev.id.vn
         description: AI gateway and universal API proxy
 
+    - Open WebUI:
+        icon: openwebui.png
+        href: https://openwebui.tutran-dev.id.vn
+        container: open-webui
+        server: my-docker
+        description: LLM Interface and Chat Platform
+
 - Management:
     - Portainer:
         icon: portainer.png

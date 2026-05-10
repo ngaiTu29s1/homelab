@@ -1,0 +1,24 @@
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    restart: unless-stopped
+    # ports:
+    #   - "3000:8080"
+    volumes:
+      - ./data:/app/backend/data
+    environment:
+      - "OPENAI_API_BASE_URLS=${OPENAI_API_BASE_URLS}"
+      - "OPENAI_API_KEYS=${OPENAI_API_KEYS}"
+      - "ENABLE_OLLAMA_API=${ENABLE_OLLAMA_API}"
+
+      - "SCARF_NO_ANALYTICS=True"
+      - "DO_NOT_TRACK=True"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true
