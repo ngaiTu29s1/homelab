@@ -75,14 +75,8 @@
         href: https://n8n.tutran-dev.id.vn
         container: n8n
         server: my-docker
-        description: Workflow Automation
+        description: Workflow Automation (v2)
 
-    - n8n Beta:
-        icon: n8n.png
-        href: https://n8n-v2.tutran-dev.id.vn
-        container: n8n_v2_beta
-        server: my-docker
-        description: Workflow Automation (v2 Beta)
 
     - ntfy:
         icon: ntfy.png
