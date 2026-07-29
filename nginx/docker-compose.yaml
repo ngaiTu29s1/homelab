@@ -14,9 +14,12 @@ services:
       - ./letsencrypt:/etc/letsencrypt
     networks:
       - homelab   # Quan trọng: Phải đứng trong mạng này
+      - fitness_net
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
 networks:
   homelab:
+    external: true
+  fitness_net:
     external: true
