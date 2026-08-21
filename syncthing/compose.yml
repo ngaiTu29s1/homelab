@@ -1,0 +1,26 @@
+services:
+  syncthing:
+    image: syncthing/syncthing:latest
+    container_name: syncthing
+    hostname: debian-syncthing
+    user: "${PUID}:${PGID}"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${SYNCTHING_CONFIG_PATH}:/var/syncthing
+      - ${SYNCTHING_VAULT_PATH}:/var/syncthing/vault
+    ports:
+      # Syncthing Web GUI bound strictly to localhost
+      - "${SYNCTHING_GUI_IP}:${SYNCTHING_GUI_PORT}:8384"
+      # Sync protocol bound exclusively to host Tailscale IP interface
+      - "${TAILSCALE_IP}:${SYNCTHING_SYNC_PORT}:22000/tcp"
+      - "${TAILSCALE_IP}:${SYNCTHING_SYNC_PORT}:22000/udp"
+    restart: unless-stopped
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true
